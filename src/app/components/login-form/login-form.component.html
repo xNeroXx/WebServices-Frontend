@@ -1,1 +1,16 @@
-<p>login-form works!</p>
+<div class="alignHorizontal">
+  <div class="alignVertical">
+    <div class="login-content">
+      <div>
+        <form>
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+            <mat-label>Name des Gerichts</mat-label>
+            <input matInput required [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
