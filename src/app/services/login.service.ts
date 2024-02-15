@@ -11,9 +11,7 @@ export class LoginService {
 
   constructor(private http: HttpClient, private statusMessageService: StatusMessageService) { }
 
-  login() {
-    let userEmail = (document.getElementById("userEmail") as HTMLInputElement).value;
-    let userPassword = (document.getElementById("userPassword")as HTMLInputElement).value;
+  login(userEmail: string = '', userPassword: string = '') {
     let userData = {userEmail, userPassword};
 
     this.loginApiCall(userData).subscribe(data => {

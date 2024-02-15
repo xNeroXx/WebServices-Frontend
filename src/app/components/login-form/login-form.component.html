@@ -2,11 +2,16 @@
   <div class="alignVertical">
     <div class="login-content">
       <div>
-        <form>
+        <form [formGroup]="loginForm">
           <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
-            <mat-label>Name des Gerichts</mat-label>
-            <input matInput required [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+            <mat-label>E-Mail</mat-label>
+            <input matInput required formControlName="email">
           </mat-form-field>
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+            <mat-label>Passwort</mat-label>
+            <input matInput required formControlName="password">
+          </mat-form-field>
+          <button mat-button (click)="submit()">Fertig</button>
         </form>
       </div>
     </div>
