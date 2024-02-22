@@ -13,9 +13,15 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import {MatFormField} from "@angular/material/form-field";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UploadComponent } from './components/upload/upload.component';
 import {MatIcon} from "@angular/material/icon";
+import { HeaderComponent } from './components/header/header.component';
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import { FooterComponent } from './components/footer/footer.component';
+import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
+import {MatSlider} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -23,6 +29,9 @@ import {MatIcon} from "@angular/material/icon";
     MainPageComponent,
     DummyComponent,
     HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    AudioPlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,12 @@ import {MatIcon} from "@angular/material/icon";
     MatAutocompleteTrigger,
     SearchComponent,
     MatIcon,
-    UploadComponent
+    UploadComponent,
+    MatToolbar,
+    MatButton,
+    FormsModule,
+    MatSlider,
+    MatIconButton
   ],
   providers: [
     provideClientHydration(),
