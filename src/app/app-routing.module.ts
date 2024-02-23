@@ -5,17 +5,28 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {DummyComponent} from "./components/dummy/dummy.component";
 import {HomeComponent} from "./components/home/home.component";
+import {MainPageComponent} from "./components/main-page/main-page.component";
+import {SignupComponent} from "./components/signup/signup.component";
 import {MusicComponent} from "./components/music/music.component";
 
 const routes: Routes = [
 
   {
     path: '', // standard url leads to main-page with navbar
-    component: HomeComponent,
+    component: MainPageComponent,
     children: [ //one of these routes will display main-page content additionally to router outlet
       {
-      path: 'dummy',
-      component: DummyComponent
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dummy',
+        component: DummyComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent
       }
     ]
   },
@@ -24,8 +35,8 @@ const routes: Routes = [
     component: LoginFormComponent
   },
   {
-    path: 'music', // one of the other routes will only display the related component
-    component: MusicComponent
+    path: 'signup',
+    component: SignupComponent
   },
   {
     path: '**', // all non-registered urls are redirected to standard url
