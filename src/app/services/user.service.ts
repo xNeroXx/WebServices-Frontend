@@ -6,7 +6,7 @@ import {StatusMessageService} from "./status-message.service";
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class UserService {
   private loginApiURL = "https://api.example.com" //todo;
 
   constructor(private http: HttpClient, private statusMessageService: StatusMessageService) { }
