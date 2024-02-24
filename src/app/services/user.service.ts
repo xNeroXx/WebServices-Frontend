@@ -97,5 +97,4 @@ export class UserService {
   getCurrentUserFirstName() {
     return this.currentUser.first_name;
   }
-
 }
