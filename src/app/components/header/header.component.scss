@@ -4,7 +4,13 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    span {
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
+      span {
       font-weight: bold;
     }
 

@@ -1,11 +1,11 @@
 <section class="home">
-  <img src="../../../assets/img/background.jpg" alt="Background Image">
+  <img ngSrc="../../../assets/img/background.jpg" alt="Background Image" height="3000" width="5000">
   <div class="homecontent">
     <h1>Musikplayer und Converter</h1>
    <div class="search-upload-container">
       <app-search class="app-search"></app-search>
       <app-upload class="app-upload"></app-upload>
+     <app-file-converter></app-file-converter>
     </div>
   </div>
-  <app-audio-player [audioSrc]="'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'"></app-audio-player> <!-- example mp3 audio -->
 </section>
