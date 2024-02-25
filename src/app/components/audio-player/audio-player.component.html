@@ -1,13 +1,12 @@
 <div class="audio-player-container">
   <div class="audio-player">
-    <audio #audioPlayer>
+    <audio #audioPlayer (pause)="isPlaying = false">
       <source [src]="audioSrc" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
     <div class="controls">
       <button (click)="togglePlay()">
-        <span *ngIf="!isPlaying"><mat-icon >play_circle_outline</mat-icon></span>
-        <span *ngIf="isPlaying"><mat-icon>pause_circle_outline</mat-icon></span>
+        <mat-icon>{{ isPlaying ? 'pause_circle_outline' : 'play_circle_outline' }}</mat-icon>
       </button>
     </div>
     <div class="progress-bar-container" (click)="seek($event)">

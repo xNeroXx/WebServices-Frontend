@@ -1,4 +1,5 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, SimpleChanges, ViewChild} from '@angular/core';
+import { AudioPlayerService } from '../../services/audio-player.service';
 
 @Component({
   selector: 'app-audio-player',
@@ -7,24 +8,44 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 })
 export class AudioPlayerComponent {
   @Input() audioSrc: string = '';
-  @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
-  isPlaying: boolean = false;
+  @ViewChild('audioPlayer') audioPlayerRef!: ElementRef;
+  @Input() isPlaying: boolean = false;
   currentTime: number = 0;
   duration: number = 0;
   volume: number = 100;
   isMuted: boolean = false;
+
+
+  constructor(private audioPlayerService: AudioPlayerService) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isPlaying'] && !changes['isPlaying'].firstChange) {
+      if (this.isPlaying) {
+        this.play();
+      } else {
+        this.pause();
+      }
+    }
+  }
 
   toggleMute() {
     this.isMuted = !this.isMuted;
     const audioPlayer = this.audioPlayerRef.nativeElement;
     audioPlayer.muted = this.isMuted;
   }
+
   togglePlay() {
+    this.isPlaying = !this.isPlaying;
+    this.audioPlayerService.setPlayingState(this.isPlaying, this.audioSrc);
+
+
+    /**
     if (this.isPlaying) {
       this.pause();
     } else {
       this.play();
-    }
+    } */
   }
 
   play() {
@@ -42,16 +63,20 @@ export class AudioPlayerComponent {
     audioPlayer.volume = this.volume / 100;
   }
 
-  seek(event: MouseEvent) {
+  seek(event
+         :
+         MouseEvent
+  ) {
     const progressBar = event.target as HTMLDivElement;
     const clickX = event.clientX - progressBar.getBoundingClientRect().left;
     const width = progressBar.offsetWidth;
     this.audioPlayerRef.nativeElement.currentTime = (clickX / width) * this.duration;
   }
 
-
+  /**
   ngAfterViewInit() {
     const audioPlayer = this.audioPlayerRef.nativeElement;
+    audioPlayer.addEventListener('canplaythrough', () => this.play());
     audioPlayer.addEventListener('timeupdate', () => {
       this.currentTime = audioPlayer.currentTime;
       this.duration = audioPlayer.duration;
@@ -59,6 +84,6 @@ export class AudioPlayerComponent {
     audioPlayer.addEventListener('ended', () => {
       this.isPlaying = false;
     });
-  }
+  } */
 }
 

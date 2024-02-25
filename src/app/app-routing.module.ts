@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginFormComponent} from "./components/login-form/login-form.component";
 import {DummyComponent} from "./components/dummy/dummy.component";
 import {HomeComponent} from "./components/home/home.component";
+import {MusicComponent} from "./components/music/music.component";
 
 const routes: Routes = [
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'login', // one of the other routes will only display the related component
     component: LoginFormComponent
+  },
+  {
+    path: 'music', // one of the other routes will only display the related component
+    component: MusicComponent
   },
   {
     path: '**', // all non-registered urls are redirected to standard url

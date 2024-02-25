@@ -18,10 +18,16 @@ import { UploadComponent } from './components/upload/upload.component';
 import {MatIcon} from "@angular/material/icon";
 import { HeaderComponent } from './components/header/header.component';
 import {MatToolbar} from "@angular/material/toolbar";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatFabButton, MatIconButton} from "@angular/material/button";
 import { FooterComponent } from './components/footer/footer.component';
 import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
 import {MatSlider} from "@angular/material/slider";
+import { MusicComponent } from './components/music/music.component';
+import {MatGridList, MatGridTile} from "@angular/material/grid-list";
+import { SongCardComponent } from './components/song-card/song-card.component';
+import { FileConverterComponent } from './components/file-converter/file-converter.component';
+import {MatProgressBar} from "@angular/material/progress-bar";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -32,6 +38,9 @@ import {MatSlider} from "@angular/material/slider";
     HeaderComponent,
     FooterComponent,
     AudioPlayerComponent,
+    MusicComponent,
+    SongCardComponent,
+    FileConverterComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +58,12 @@ import {MatSlider} from "@angular/material/slider";
     MatButton,
     FormsModule,
     MatSlider,
-    MatIconButton
+    MatIconButton,
+    MatGridList,
+    MatGridTile,
+    MatFabButton,
+    MatProgressBar,
+    NgOptimizedImage
   ],
   providers: [
     provideClientHydration(),
