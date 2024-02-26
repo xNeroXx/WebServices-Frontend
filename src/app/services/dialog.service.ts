@@ -18,4 +18,8 @@ export class DialogService {
     }
   }
 
+  closeDialog(): void {
+    this.dialog.closeAll();
+  }
+
 }

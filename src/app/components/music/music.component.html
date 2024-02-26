@@ -11,20 +11,3 @@
   [audioSrc]="selectedAudioSrc"
   [isPlaying]="isPlaying"
 ></app-audio-player>
-<!--
-<div class="music-container">
-  <app-song-card
-    *ngFor="let song of songs"
-    [song]="song"
-    [isPlaying]="selectedAudioSrc === song.audioSrc && isPlaying"
-    (play)="playSong(song.audioSrc)"
-  ></app-song-card>
-</div>
-<app-audio-player
-  *ngIf="selectedAudioSrc"
-  [audioSrc]="selectedAudioSrc"
-  [isPlaying]="isPlaying"
-  (play)="playSong(selectedAudioSrc)"
-  (pause)="isPlaying = false"
-></app-audio-player>
--->

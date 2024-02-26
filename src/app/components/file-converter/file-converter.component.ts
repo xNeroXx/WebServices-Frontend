@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Input } from '@angular/core';
 import { DialogService } from '../../services/dialog.service';
 
 @Component({
@@ -8,25 +7,27 @@ import { DialogService } from '../../services/dialog.service';
   styleUrls: ['./file-converter.component.scss']
 })
 export class FileConverterComponent {
+  @Input() audioSrc: string = '';
 
-  constructor(
-    private dialogService: DialogService,
-  ) {}
+  currentFormat: string = '';
+  availableFormats: string[] = ['MP3', 'WAV', 'FLAC']; //TODO get all available fromats from backend
+  selectedFormat: string = '';
 
-  openFileSelectionDialog(): void {
-  /**  const dialogRef = this.dialogService.openDialog({
-      title: 'Select File to Convert',
-      content: 'Here goes the content of the dialog. You can list the available files here.',
-    });
+  constructor(private dialogService: DialogService) {}
 
-    dialogRef.afterClosed().subscribe((selectedFile: File) => {
-      if (selectedFile) {
-        this.convertFile(selectedFile);
-      }
-    });*/
+ // TODO get audio type from backend
+
+  closeDialog(): void {
+    this.dialogService.closeDialog();
   }
 
-  convertFile(file: File): void {
+  convert(): void {
+    console.log('Konvertierung gestartet:', this.selectedFormat);
+    this.closeDialog();
+  }
 
+  cancel(): void {
+    this.closeDialog();
+    console.log('Konvertierung abgebrochen');
   }
 }

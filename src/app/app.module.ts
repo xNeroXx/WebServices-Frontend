@@ -28,6 +28,12 @@ import { SongCardComponent } from './components/song-card/song-card.component';
 import { FileConverterComponent } from './components/file-converter/file-converter.component';
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {NgOptimizedImage} from "@angular/common";
+import { MetadataEditComponent } from './components/metadata-edit/metadata-edit.component';
+import {MatInput} from "@angular/material/input";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelect} from "@angular/material/select";
+import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -41,6 +47,7 @@ import {NgOptimizedImage} from "@angular/common";
     MusicComponent,
     SongCardComponent,
     FileConverterComponent,
+    MetadataEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +70,14 @@ import {NgOptimizedImage} from "@angular/common";
     MatGridTile,
     MatFabButton,
     MatProgressBar,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatInput,
+    MatFormFieldModule,
+    MatSelect,
+    MatDialogContent,
+    MatDialogTitle,
+    MatDialogActions,
+    MatDialogModule
   ],
   providers: [
     provideClientHydration(),

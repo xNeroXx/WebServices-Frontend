@@ -11,7 +11,15 @@
 
 .custom-dialog-content {
   padding: 16px;
+  display: flex;
+  justify-content: space-between;
 }
+
+.custom-input-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
 
 .custom-dialog-footer {
   background-color: #f0f0f0;
