@@ -1,0 +1,21 @@
+<div class="custom-dialog">
+  <div class="custom-dialog-header">
+    Datei konvertieren
+  </div>
+  <div class="custom-dialog-content">
+    <p>Aktuelles Format: {{ currentFormat }}</p>
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Zielkonvertierung</mat-label>
+      <mat-select [(value)]="selectedFormat">
+        <mat-option *ngFor="let format of availableFormats" [value]="format">{{ format }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="custom-dialog-footer">
+    <button mat-button (click)="cancel()">Abbrechen</button>
+    <button mat-button color="primary" (click)="convert()">Konvertieren</button>
+  </div>
+</div>
+
+
+<!--TODO only show select options for types which arent equal to current type -->

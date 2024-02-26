@@ -1,0 +1,24 @@
+<div class="custom-dialog">
+  <div class="custom-dialog-header">
+    Daten bearbeiten
+  </div>
+  <div class="custom-dialog-content">
+    <div class="custom-input-field">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="data.song.title" placeholder="Enter title">
+    </mat-form-field>
+    </div>
+    <div class="custom-input-field">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Artist</mat-label>
+      <input matInput [(ngModel)]="data.song.artist" placeholder="Enter artist">
+    </mat-form-field>
+      </div>
+  </div>
+  <div class="custom-dialog-footer">
+    <button mat-button (click)="cancel()">Abbrechen</button>
+    <button mat-button color="primary" (click)="save()">Speichern</button>
+  </div>
+</div>
+

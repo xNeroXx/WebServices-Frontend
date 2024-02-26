@@ -7,10 +7,10 @@
       <button (click)="togglePlay()">
         <mat-icon>{{ isPlaying ? 'pause_circle_outline' : 'play_circle_outline' }}</mat-icon>
       </button>
-      <button> <!--TODO (click)="convertSong()"> -->
+      <button (click)="openConversionDialog()">
         <mat-icon>change_circle</mat-icon>
       </button>
-      <button> <!--TODO (click)="editMetadata()"> -->
+      <button (click)="openMetadataEditDialog()">
         <mat-icon>edit</mat-icon>
       </button>
     </div>

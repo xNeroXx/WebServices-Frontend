@@ -35,6 +35,11 @@ import { FileConverterComponent } from './components/file-converter/file-convert
 import {MatProgressBar} from "@angular/material/progress-bar";
 import {NgOptimizedImage} from "@angular/common";
 import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
+import { MetadataEditComponent } from './components/metadata-edit/metadata-edit.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelect} from "@angular/material/select";
+import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -50,6 +55,8 @@ import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
     MusicComponent,
     SongCardComponent,
     FileConverterComponent,
+    MetadataEditComponent,
+    UploadComponent,
   ],
     imports: [
       BrowserModule,
@@ -63,7 +70,6 @@ import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
       MatAutocompleteTrigger,
       SearchComponent,
       MatIcon,
-      UploadComponent,
       MatToolbar,
       MatButton,
       FormsModule,
@@ -79,8 +85,15 @@ import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
       MatGridTile,
       MatFabButton,
       MatProgressBar,
-      NgOptimizedImage
-    ],
+      NgOptimizedImage,
+      MatInput,
+      MatFormFieldModule,
+      MatSelect,
+      MatDialogContent,
+      MatDialogTitle,
+      MatDialogActions,
+      MatDialogModule
+  ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
