@@ -7,6 +7,8 @@ import {DummyComponent} from "./components/dummy/dummy.component";
 import {HomeComponent} from "./components/home/home.component";
 import {MainPageComponent} from "./components/main-page/main-page.component";
 import {SignupComponent} from "./components/signup/signup.component";
+import {PreSearchComponent} from "./components/pre-search/pre-search.component";
+import {SearchResultsComponent} from "./components/search-results/search-results.component";
 import {MusicComponent} from "./components/music/music.component";
 
 const routes: Routes = [
@@ -27,6 +29,14 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'preSearch',
+        component: PreSearchComponent
+      },
+      {
+        path: 'searchResults',
+        component: SearchResultsComponent
       }
     ]
   },
