@@ -1,11 +1,20 @@
-<form class="example-form">
+<form [formGroup]="searchForm" class="example-form" (ngSubmit)="onSearchSubmit()">
   <mat-form-field class="example-full-width">
-    <mat-label>Suche</mat-label>
-    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      @for (option of filteredOptions | async; track option) {
-        <mat-option [value]="option">{{option.name}}</mat-option>
+    <input type="text" matInput placeholder="Suche..." formControlName="searchValue" [matAutocomplete]="auto" id="searchbar">
+    <mat-autocomplete #auto="matAutocomplete" hideSingleSelectionIndicator="true" id="search-autocomplete"> <!--TODO  autoSelectActiveOption="true" ja/nein-->
+      @for (data of filteredAutoCompleteData; track $index) {
+        <mat-option [value]="data">{{data}}</mat-option>
       }
     </mat-autocomplete>
+    <button matSuffix mat-icon-button color="primary" class="icon-button" id="search-submit"><mat-icon>search</mat-icon></button>
   </mat-form-field>
+  <div class="center-chipbox">
+    <mat-chip-listbox aria-label="Category Selection" class="category-selection" formControlName="searchCategory">
+      <mat-label class="chip-label">Suche nach:</mat-label>
+      <mat-chip-option value="title">Titel</mat-chip-option>
+      <mat-chip-option value="artists">Interpret</mat-chip-option>
+      <mat-chip-option value="album">Album</mat-chip-option>
+      <mat-chip-option value="genre">Genre</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
 </form>
