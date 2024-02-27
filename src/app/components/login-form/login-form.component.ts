@@ -34,6 +34,25 @@ export class LoginFormComponent {
     return this.loginForm.get('email')?.hasError('email') ? 'Not a valid email' : '';
   }*/
 
+  getErrorMessage(field: number) {
+    if (field == 0) {
+      if (this.loginForm.get('email')?.hasError('required')) {
+        return 'Darf nicht leer sein';
+      }
+      return this.loginForm.get('email')?.hasError('email') ? 'Keine valide Email' : '';
+    } else if (field == 1) {
+      if (this.loginForm.get('password')?.hasError('required')) {
+        return 'Darf nicht leer sein';
+      }
+      else if (this.loginForm.get('password')?.hasError('minlength')) {
+        return 'Mindestens 8 Zeichen'
+      }
+      return this.loginForm.get('password')?.hasError('*') ? 'Kein valides Passwort' : '';
+    }
+    return '';
+  }
+
+
   submit() {
     console.log(this.loginForm.get('email')?.value)
     console.log(this.loginForm.get('password')?.value)
