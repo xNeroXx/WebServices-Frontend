@@ -156,7 +156,7 @@ export class SearchService {
   }
 
   private _preSearchCategory() {
-    this.router.navigate(['/presearch']);
+    this.router.navigate(['/preSearch']);
     console.log(this.filteredCategorySearchAutofillData)
   }
 
