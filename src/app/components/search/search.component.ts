@@ -9,10 +9,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 
-export interface CategoryOption {
-  value: string,
-  displayValue: string
-}
+
 
 @Component({
   selector: 'app-search',

@@ -6,7 +6,7 @@ import {SearchService} from "../../services/search.service";
   templateUrl: './pre-search.component.html',
   styleUrl: './pre-search.component.scss'
 })
-export class PreSearchComponent implements AfterContentChecked {
+export class PreSearchComponent implements AfterContentChecked{
   filteredOptions: string[] = []
 
   constructor(protected searchService: SearchService) {
