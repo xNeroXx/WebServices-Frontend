@@ -29,7 +29,6 @@ export interface CategoryOption {
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    UploadComponent,
     MatIcon,
     MatButton,
     MatIconButton,
@@ -53,6 +52,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     //this.searchService.getAutoCompleteData(); TODO remove Comment
+    this.loadAutoCompleteData()
   }
 
   onSearchSubmit() {
@@ -63,7 +63,9 @@ export class SearchComponent implements OnInit {
     this.searchService.search(this.searchValue, this.searchCategory);
   }
 
-
+  loadAutoCompleteData() {
+    this.searchService.foo();
+  }
 
   get filteredAutoCompleteData(): string[] {
     const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';

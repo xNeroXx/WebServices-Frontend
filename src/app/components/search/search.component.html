@@ -5,6 +5,9 @@
       @for (data of filteredAutoCompleteData; track $index) {
         <mat-option [value]="data">{{data}}</mat-option>
       }
+      @if (filteredAutoCompleteData.length == 0) {
+        <mat-option [value]="" disabled>-- Keine Daten Verfügbar --</mat-option>
+      }
     </mat-autocomplete>
     <button matSuffix mat-icon-button color="primary" class="icon-button" id="search-submit"><mat-icon>search</mat-icon></button>
   </mat-form-field>
@@ -12,7 +15,7 @@
     <mat-chip-listbox aria-label="Category Selection" class="category-selection" formControlName="searchCategory">
       <mat-label class="chip-label">Suche nach:</mat-label>
       <mat-chip-option value="title">Titel</mat-chip-option>
-      <mat-chip-option value="artists">Interpret</mat-chip-option>
+      <mat-chip-option value="interpret">Interpret</mat-chip-option>
       <mat-chip-option value="album">Album</mat-chip-option>
       <mat-chip-option value="genre">Genre</mat-chip-option>
     </mat-chip-listbox>

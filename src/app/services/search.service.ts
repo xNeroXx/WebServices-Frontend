@@ -9,9 +9,16 @@ import {StatusMessageService} from "./status-message.service";
   providedIn: 'root'
 })
 export class SearchService {
-  private searchURL = 'http://example-url.de/search/'
+  private searchURL = 'http://127.0.0.1:8000/api/search/search/'
 
   categorySearchAutofillData: {[category: string]: string[]} = {
+    'title': [],
+    'interpret': [],
+    'album': [],
+    'genre': []
+  };
+
+  _categorySearchAutofillData: {[category: string]: string[]} = {
     'title': [
       "Bohemian Rhapsody",
       "Like a Rolling Stone",
@@ -101,6 +108,7 @@ export class SearchService {
       "Techno"
     ]
   };
+
   filteredCategorySearchAutofillData: string[] = [];
   categorySearchResults: string[] = []; //same as filteredCategorySearchAutofillData, but only updated on submit of search form
   searchResponse: SongData[] = [];
@@ -108,6 +116,12 @@ export class SearchService {
   searchCategory: string = '';
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  foo() {
+    this.http.get<{[category: string]: string[]}>(this.searchURL + 'all_criteria').subscribe((data) => {
+      this.categorySearchAutofillData = data;
+    })
+  }
 
   getAutoCompleteData(): Observable<{[category: string]: string[]}> {
     return this.http.get<{[category: string]: string[]}>(this.searchURL + 'getStringArray');
