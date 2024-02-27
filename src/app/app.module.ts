@@ -4,31 +4,31 @@ import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
-import {HTTP_INTERCEPTORS, provideHttpClient, withFetch} from "@angular/common/http";
-import {JwtInterceptor} from "./classes/JwtInterceptor";
+import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
 import {LoginFormComponent} from './components/login-form/login-form.component';
 import {MainPageComponent} from "./components/main-page/main-page.component";
 import {DummyComponent} from "./components/dummy/dummy.component";
-import { HomeComponent } from './components/home/home.component';
-import { SearchComponent } from './components/search/search.component';
+import {HomeComponent} from './components/home/home.component';
+import {SearchComponent} from './components/search/search.component';
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { UploadComponent } from './components/upload/upload.component';
+import {UploadComponent} from './components/upload/upload.component';
 import {MatIcon} from "@angular/material/icon";
-import { HeaderComponent } from './components/header/header.component';
+import {HeaderComponent} from './components/header/header.component';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatButton, MatIconButton} from "@angular/material/button";
-import { FooterComponent } from './components/footer/footer.component';
-import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {AudioPlayerComponent} from './components/audio-player/audio-player.component';
 import {MatSlider} from "@angular/material/slider";
-import { SignupComponent } from './components/signup/signup.component';
-import { SearchResultsComponent } from './components/search-results/search-results.component';
+import {SignupComponent} from './components/signup/signup.component';
+import {SearchResultsComponent} from './components/search-results/search-results.component';
 import {MatDivider} from "@angular/material/divider";
 import {MatInput} from "@angular/material/input";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
-import { PreSearchComponent } from './components/pre-search/pre-search.component';
+import {PreSearchComponent} from './components/pre-search/pre-search.component';
 import {MatListSubheaderCssMatStyler} from "@angular/material/list";
+import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
 
 @NgModule({
   declarations: [
@@ -41,42 +41,39 @@ import {MatListSubheaderCssMatStyler} from "@angular/material/list";
     AudioPlayerComponent,
     SearchResultsComponent,
     PreSearchComponent,
+
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        LoginFormComponent,
-        SignupComponent,
-        MatFormField,
-        MatAutocomplete,
-        MatOption,
-        ReactiveFormsModule,
-        MatAutocompleteTrigger,
-        SearchComponent,
-        MatIcon,
-        UploadComponent,
-        MatToolbar,
-        MatButton,
-        FormsModule,
-        MatSlider,
-        MatIconButton,
-        MatDivider,
-        MatInput,
-        MatLabel,
-        MatChipListbox,
-        MatChipOption,
-        MatListSubheaderCssMatStyler,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LoginFormComponent,
+    SignupComponent,
+    MatFormField,
+    MatAutocomplete,
+    MatOption,
+    ReactiveFormsModule,
+    MatAutocompleteTrigger,
+    SearchComponent,
+    MatIcon,
+    MatToolbar,
+    MatButton,
+    FormsModule,
+    MatSlider,
+    MatIconButton,
+    MatDivider,
+    MatInput,
+    MatLabel,
+    MatChipListbox,
+    MatChipOption,
+    MatListSubheaderCssMatStyler,
+    UploadComponent,
+  ],
   providers: [
     provideClientHydration(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-    },
     provideAnimationsAsync(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([authHeaderInterceptor])),
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
