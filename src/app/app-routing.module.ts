@@ -32,7 +32,7 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'presearch',
+        path: 'preSearch',
         component: PreSearchComponent
       },
       {
