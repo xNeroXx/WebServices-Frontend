@@ -9,6 +9,7 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {PreSearchComponent} from "./components/pre-search/pre-search.component";
 import {SearchResultsComponent} from "./components/search-results/search-results.component";
+import {authGuard} from "./classes/AuthGuard";
 import {MusicComponent} from "./components/music/music.component";
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: '', // standard url leads to main-page with navbar
     component: MainPageComponent,
+    canActivate: [authGuard],
     children: [ //one of these routes will display main-page content additionally to router outlet
       {
         path: '',
