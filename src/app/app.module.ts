@@ -11,7 +11,7 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {DummyComponent} from "./components/dummy/dummy.component";
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
-import {MatFormField} from "@angular/material/form-field";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UploadComponent } from './components/upload/upload.component';
@@ -22,6 +22,13 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 import { FooterComponent } from './components/footer/footer.component';
 import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
 import {MatSlider} from "@angular/material/slider";
+import { SignupComponent } from './components/signup/signup.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import {MatDivider} from "@angular/material/divider";
+import {MatInput} from "@angular/material/input";
+import {MatChipListbox, MatChipOption} from "@angular/material/chips";
+import { PreSearchComponent } from './components/pre-search/pre-search.component';
+import {MatListSubheaderCssMatStyler} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -32,25 +39,34 @@ import {MatSlider} from "@angular/material/slider";
     HeaderComponent,
     FooterComponent,
     AudioPlayerComponent,
+    SearchResultsComponent,
+    PreSearchComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LoginFormComponent,
-    MatFormField,
-    MatAutocomplete,
-    MatOption,
-    ReactiveFormsModule,
-    MatAutocompleteTrigger,
-    SearchComponent,
-    MatIcon,
-    UploadComponent,
-    MatToolbar,
-    MatButton,
-    FormsModule,
-    MatSlider,
-    MatIconButton
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        LoginFormComponent,
+        SignupComponent,
+        MatFormField,
+        MatAutocomplete,
+        MatOption,
+        ReactiveFormsModule,
+        MatAutocompleteTrigger,
+        SearchComponent,
+        MatIcon,
+        UploadComponent,
+        MatToolbar,
+        MatButton,
+        FormsModule,
+        MatSlider,
+        MatIconButton,
+        MatDivider,
+        MatInput,
+        MatLabel,
+        MatChipListbox,
+        MatChipOption,
+        MatListSubheaderCssMatStyler,
+    ],
   providers: [
     provideClientHydration(),
     {
