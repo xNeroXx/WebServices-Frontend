@@ -2,6 +2,7 @@
   <div class="alignVertical">
     <div class="login-content">
       <div>
+        <div class="align-horizontal"><h1 class="login-header">Login</h1></div>
         <form [formGroup]="loginForm">
           <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
             <mat-label>E-Mail</mat-label>
@@ -9,10 +10,19 @@
           </mat-form-field>
           <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
             <mat-label>Passwort</mat-label>
-            <input matInput required formControlName="password">
+            <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
           </mat-form-field>
-          <button mat-button (click)="submit()">Fertig</button>
+          <button mat-stroked-button color="primary" (click)="submit()" type="submit" [disabled]="!loginForm.valid">Fertig</button>
         </form>
+      </div>
+
+      <div class="new-user-section">
+        <mat-divider></mat-divider>
+        <div class="new-user-hint lead"><p>Neu hier?</p></div>
+        <div><a class="btn-link" routerLink="/signup">Zur Registrierung</a></div>
       </div>
     </div>
   </div>
