@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {delay, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {SongData} from "../interfaces/song-data";
-import {Router, RouterModule} from "@angular/router";
+import {Router} from "@angular/router";
 import {StatusMessageService} from "./status-message.service";
+import {AutofillData, createAutofillData} from "../interfaces/autofill-data";
 
 @Injectable({
   providedIn: 'root'
@@ -11,103 +11,7 @@ import {StatusMessageService} from "./status-message.service";
 export class SearchService {
   private searchURL = 'http://127.0.0.1:8000/api/search/search/'
 
-  categorySearchAutofillData: {[category: string]: string[]} = {
-    'title': [],
-    'interpret': [],
-    'album': [],
-    'genre': []
-  };
-
-  _categorySearchAutofillData: {[category: string]: string[]} = {
-    'title': [
-      "Bohemian Rhapsody",
-      "Like a Rolling Stone",
-      "Billie Jean",
-      "Imagine",
-      "Hey Jude",
-      "Hotel California",
-      "Smells Like Teen Spirit",
-      "Sweet Child o' Mine",
-      "Wonderwall",
-      "Every Breath You Take",
-      "Thriller",
-      "Yesterday",
-      "Stairway to Heaven",
-      "Let It Be",
-      "Don't Stop Believin'",
-      "I Will Always Love You",
-      "Born to Run",
-      "Piano Man",
-      "My Way",
-      "Free Bird"
-    ],
-    'artists': [
-      "Queen",
-      "The Beatles",
-      "Michael Jackson",
-      "Madonna",
-      "Elvis Presley",
-      "Bob Dylan",
-      "Beyoncé",
-      "Led Zeppelin",
-      "Adele",
-      "Pink Floyd",
-      "David Bowie",
-      "Prince",
-      "Frank Sinatra",
-      "Rolling Stones",
-      "Whitney Houston",
-      "Taylor Swift",
-      "Bruno Mars",
-      "Nirvana",
-      "Eminem",
-      "Metallica"
-    ],
-    'album': [
-      "Abbey Road",
-      "The Dark Side of the Moon",
-      "Thriller",
-      "Led Zeppelin IV",
-      "The Wall",
-      "The Beatles (White Album)",
-      "Sgt. Pepper's Lonely Hearts Club Band",
-      "Back in Black",
-      "Born to Run",
-      "Rumours",
-      "Nevermind",
-      "Greatest Hits",
-      "The Joshua Tree",
-      "Purple Rain",
-      "Greatest Hits",
-      "Hotel California",
-      "A Night at the Opera",
-      "Revolver",
-      "Legend",
-      "Goodbye Yellow Brick Road"
-    ],
-    'genre': [
-      "Rock",
-      "Pop",
-      "R&B",
-      "Hip Hop",
-      "Country",
-      "Jazz",
-      "Blues",
-      "Electronic",
-      "Folk",
-      "Reggae",
-      "Classical",
-      "Punk",
-      "Metal",
-      "Indie",
-      "Soul",
-      "Funk",
-      "Alternative",
-      "Disco",
-      "Gospel",
-      "Techno"
-    ]
-  };
+  categorySearchAutofillData: AutofillData = createAutofillData();
 
   filteredCategorySearchAutofillData: string[] = [];
   categorySearchResults: string[] = []; //same as filteredCategorySearchAutofillData, but only updated on submit of search form
@@ -119,12 +23,8 @@ export class SearchService {
 
   foo() {
     this.http.get<{[category: string]: string[]}>(this.searchURL + 'all_criteria').subscribe((data) => {
-      this.categorySearchAutofillData = data;
+      this.categorySearchAutofillData = createAutofillData(data);
     })
-  }
-
-  getAutoCompleteData(): Observable<{[category: string]: string[]}> {
-    return this.http.get<{[category: string]: string[]}>(this.searchURL + 'getStringArray');
   }
 
   search(searchValue: string, searchCategory: string) {
@@ -148,7 +48,7 @@ export class SearchService {
   }
 
   private _searchForSongs(searchValue: string, searchCategory: string) {
-    this.http.post<SongData[]>(this.searchURL, {searchCategory: searchValue}).subscribe( //TODO research errorhandling thats not deprecated
+    this.http.post<SongData[]>(this.searchURL, {searchCategory, searchValue}).subscribe( //TODO research errorhandling thats not deprecated
       (data) => {
         this.searchResponse = data;
         this.router.navigate(['/searchResults']);
@@ -161,7 +61,14 @@ export class SearchService {
   }
 
   getFilteredCategorySearchData(category: string, filterValue: string): string[] {
-    this.filteredCategorySearchAutofillData = this.categorySearchAutofillData[category].filter(option => option.toLowerCase().includes(filterValue));
+    let tempList: string[] = [];
+    switch (category) {
+      default: {tempList = this.categorySearchAutofillData.title ?? []; break}
+      case 'interpret': {tempList = this.categorySearchAutofillData.interpret ?? []; break}
+      case 'album': {tempList = this.categorySearchAutofillData.album ?? []; break}
+      case 'genre': {tempList = this.categorySearchAutofillData.genre ?? []; break}
+    }
+    this.filteredCategorySearchAutofillData = tempList.filter(option => option.toLowerCase().includes(filterValue));
     return this.filteredCategorySearchAutofillData;
   }
 
