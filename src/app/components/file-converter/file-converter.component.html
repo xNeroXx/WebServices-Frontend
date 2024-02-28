@@ -1,9 +1,9 @@
+<!-- file-converter.component.html -->
 <div class="custom-dialog">
   <div class="custom-dialog-header">
     Datei konvertieren
   </div>
   <div class="custom-dialog-content">
-    <p>Aktuelles Format: {{ currentFormat }}</p>
     <mat-form-field appearance="outline" class="input-field">
       <mat-label>Zielkonvertierung</mat-label>
       <mat-select [(value)]="selectedFormat">
@@ -13,9 +13,12 @@
   </div>
   <div class="custom-dialog-footer">
     <button mat-button (click)="cancel()">Abbrechen</button>
-    <button mat-button color="primary" (click)="convert()">Konvertieren</button>
+    <button mat-button color="primary" (click)="convert()" [disabled]="loading">Konvertieren</button>
+  </div>
+
+  <div *ngIf="loading" class="overlay">
+    <div class="loading-screen">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 </div>
-
-
-<!--TODO only show select options for types which arent equal to current type -->

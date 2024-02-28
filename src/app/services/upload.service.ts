@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpResponse, HttpEvent, HttpEventType } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
+  private apiUrl = 'http://localhost:8000/api/id3service/uploadfile';
 
   constructor(private http: HttpClient) { }
 
-  async uploadFile(file: File): Promise<number> {
+  uploadFile(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', file);
 
-    const response = await this.http.post<any>('https://jsonplaceholder.typicode.com/posts', formData).toPromise();
+    const token = localStorage.getItem('access_token');
 
-    return response.id;
-  }
-
-  async getFileDetails(fileId: number): Promise<any> {
-    return this.http.get<any>(`https://jsonplaceholder.typicode.com/posts/${fileId}`).toPromise();
+    return this.http.post<any>(this.apiUrl, formData).pipe(
+      catchError((error: any) => {
+        console.error('Upload failed:', error);
+        return throwError('Upload failed');
+      })
+    );
   }
 }

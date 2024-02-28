@@ -1,33 +1,49 @@
-import {Component} from '@angular/core';
-import {UploadService} from '../../services/upload.service';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
-import {MatProgressBar} from "@angular/material/progress-bar";
-import {NgIf} from "@angular/common";
-
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { UploadService } from '../../services/upload.service';
+import {isPlatformBrowser, NgIf} from "@angular/common";
+import {MatIcon} from "@angular/material/icon";
+import {MatButton, MatFabButton} from "@angular/material/button";
 @Component({
   selector: 'app-upload',
-  templateUrl: 'upload.component.html',
-  styleUrls: ['upload.component.scss'],
+  templateUrl: './upload.component.html',
   standalone: true,
-  imports: [MatButtonModule, MatTooltipModule, MatIconModule, MatProgressBar, NgIf],
+  imports: [
+    MatIcon,
+    MatFabButton,
+    NgIf,
+    MatButton
+  ],
+  styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
-  fileName: string = '';
-  progress: number = 0;
+  selectedFile: File | undefined;
+  accessToken: string | null = null;
 
-  constructor(private fileUploadService: UploadService) { }
+  constructor(
+    private uploadService: UploadService,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.accessToken = localStorage.getItem('access_token');
+    }
+  }
 
-  async onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.fileName = file.name;
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 
-    const fileId = await this.fileUploadService.uploadFile(file);
-
-    // Reset progress and file name after successful upload
-    this.progress = 0;
-    this.fileName = '';
+  onUpload() {
+    if (this.selectedFile && this.accessToken) {
+      this.uploadService.uploadFile(this.selectedFile).subscribe(
+        (response: any) => {
+          console.log('Upload successful:', response);
+          // Handle successful upload response
+        },
+        (error: any) => {
+          console.error('Upload failed:', error);
+          // Handle upload error
+        }
+      );
+    }
   }
 }
-

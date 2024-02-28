@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileConverterService {
+  private apiUrl = 'http://localhost:8000/api/encoderservice/convertfile/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  convertSong(song: { title: string, artist: string, imageUrl: string, audioSrc: string }): Observable<any> {
-    const url = 'http://localhost:8000/convert'; //TODO actual endpoint for convert
-    return this.http.post(url, song);
+  convertFile(fileId: number, targetFormat: string): Observable<any> {
+    const headers = new HttpHeaders().append('Content-Type', 'application/octet-stream');
+    return this.http.post(`${this.apiUrl}${fileId}?target_format=${targetFormat}`, { target_format: targetFormat }, { headers: headers, responseType: 'blob' });
   }
 }
-
