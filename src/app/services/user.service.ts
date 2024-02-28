@@ -3,13 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
 import {StatusMessageService} from "./status-message.service";
 import {Router} from "@angular/router";
-
-export interface TokenObject {
-  token: {
-    access_token: string,
-    refresh_token: string
-  }
-}
+import {TokenObject} from "../interfaces/token-object";
+import {SignupData} from "../interfaces/signup-data";
+import {CurrentUserData} from "../interfaces/current-user-data";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +13,12 @@ export interface TokenObject {
 export class UserService {
   private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private loginApiURL = "http://127.0.0.1:8000/api/registration/auth/";
+  private currentUser: CurrentUserData = {
+    email: "user@example.com",
+    first_name: "string",
+    last_name: "string",
+    username: "string"
+  }
 
   constructor(private http: HttpClient, private statusMessageService: StatusMessageService, private router: Router) { }
 
@@ -30,8 +32,15 @@ export class UserService {
       this.loggedIn$.next(true);
       this.router.navigate([''])
     });
+  }
 
+  signup(data: SignupData) {
+    this._signupApiCall(data).subscribe((currUserData) => {
+      console.log(currUserData);
+      this.currentUser = currUserData;
 
+      this.login(data.email, data.password);
+    })
   }
 
   private _loginApiCall(userData: {[key:string]:string}): Observable<TokenObject> {
@@ -39,7 +48,17 @@ export class UserService {
       catchError((error) => {
         console.error("API Error:", error);
         this.statusMessageService.showStatusMessage('Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!', 'error');
-        return throwError(() => "Something went wrong. Please try again later.");
+        return throwError(() => "Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!");
+      })
+    );
+  }
+
+  private _signupApiCall(data: SignupData): Observable<CurrentUserData> {
+    return this.http.post<CurrentUserData>(this.loginApiURL + 'signup', data).pipe(
+      catchError((error) => {
+        console.error("API Error:", error);
+        this.statusMessageService.showStatusMessage('Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!', 'error');
+        return throwError(() => "Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!");
       })
     );
   }
