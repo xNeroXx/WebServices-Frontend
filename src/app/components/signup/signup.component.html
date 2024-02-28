@@ -1,0 +1,42 @@
+<div class="alignHorizontal">
+  <div class="alignVertical">
+    <div class="signup-content">
+      <div>
+        <div class="align-horizontal"><h1 class="signup-header">Erstellen eines Nutzerkontos</h1></div> <!--TODO back to home button mit position: absolute-- auch im Login Component einfügen-->
+        <form [formGroup]="signupForm">
+
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+            <mat-label>Vorname</mat-label>
+            <input matInput required formControlName="firstName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+            <mat-label>Nachname</mat-label>
+            <input matInput required formControlName="lastName">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+            <mat-label>E-Mail</mat-label>
+            <input matInput required formControlName="email">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+            <mat-label>Passwort</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <button mat-button (click)="submit()">Fertig</button>
+        </form>
+      </div>
+
+      <div class="existing-user-section">
+        <mat-divider></mat-divider>
+        <div class="existing-user-hint lead"><p>Bereits Registriert?</p></div>
+        <div><a class="btn-link" routerLink="/login">Zum Login</a></div>
+      </div>
+    </div>
+  </div>
+</div>

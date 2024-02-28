@@ -27,9 +27,9 @@ export class MusicComponent implements OnInit {
       (data: any[]) => {
         this.songs = data;
       },
-      (error) => {
+   /**   (error) => {
         console.error("Failed to load songs:", error);
-      }
+      }  */
     );
   }
 

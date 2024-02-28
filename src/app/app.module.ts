@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -36,7 +36,9 @@ import {MatSelect} from "@angular/material/select";
 import {MusicComponent} from "./components/music/music.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     MainPageComponent,
@@ -75,7 +77,6 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatChipOption,
     MatListSubheaderCssMatStyler,
     UploadComponent,
-    SignupComponent,
     SignupComponent,
     MatSelect,
     UploadComponent,
