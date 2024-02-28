@@ -3,6 +3,7 @@ import {AudioPlayerService} from '../../services/audio-player.service';
 import {MatDialog} from "@angular/material/dialog";
 import {MetadataEditComponent} from "../metadata-edit/metadata-edit.component";
 import {FileConverterComponent} from "../file-converter/file-converter.component";
+import {SongData} from "../../interfaces/song-data";
 
 @Component({
   selector: 'app-song-card',
@@ -10,15 +11,10 @@ import {FileConverterComponent} from "../file-converter/file-converter.component
   styleUrls: ['./song-card.component.scss']
 })
 export class SongCardComponent {
-
-  @Input() song: { title: string, artist: string, imageUrl: string, audioSrc: string } = {
-    title: '',
-    artist: '',
-    imageUrl: '',
-    audioSrc: ''
-  };
+  @Input() song: any;
+  @Input() audioFile: File | undefined;
   @Input() isPlaying: boolean = false;
-  @Output() play = new EventEmitter<string>();
+  @Output() play = new EventEmitter<number>();
 
   constructor(private audioPlayerService: AudioPlayerService, private dialog: MatDialog) {
   }
@@ -26,15 +22,19 @@ export class SongCardComponent {
   ngOnInit() {
     this.audioPlayerService.isPlaying$.subscribe(isPlaying => {
       this.audioPlayerService.currentSong$.subscribe(currentSong => {
-        this.isPlaying = isPlaying && this.song.audioSrc === currentSong;
+        this.isPlaying = isPlaying //&& this.song! === currentSong;
       });
     });
   }
 
   togglePlay() {
-    if (this.song) {
-      this.audioPlayerService.togglePlay(this.song.audioSrc);
-    }
+
+      this.audioPlayerService.togglePlay(this.song.id);
+      this.isPlaying = true;
+      console.log(this.song);
+
+    //this.isPlaying = false;
+
   }
 
   openMetadataEditDialog(): void {
@@ -48,11 +48,11 @@ export class SongCardComponent {
     });
   }
 
-  openConversionDialog(): void {
+  openConversionDialog(file_id: number): void {
     this.dialog.open(FileConverterComponent, {
       width: '600px',
       data: {
-        audioSrc: this.song.audioSrc // Pass the audio source to the converter component
+        fileId: file_id,
       }
     });
   }

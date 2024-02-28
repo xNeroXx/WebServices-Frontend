@@ -1,9 +1,9 @@
 <div class="music-container">
   <app-song-card class="song-card"
-    *ngFor="let song of songs"
-    [song]="song"
-    [isPlaying]="selectedAudioSrc === song.audioSrc"
-    (play)="playSong(song.audioSrc)"
+                 *ngFor="let song of songs"
+                 [song]="song"
+                 [isPlaying]= "isPlaying"
+                 (play)="playSong(song.id)"
   ></app-song-card>
 </div>
 <app-audio-player
@@ -11,3 +11,4 @@
   [audioSrc]="selectedAudioSrc"
   [isPlaying]="isPlaying"
 ></app-audio-player>
+<!-- "selectedAudioSrc === isPlaying &&  song.audioSrc " -->

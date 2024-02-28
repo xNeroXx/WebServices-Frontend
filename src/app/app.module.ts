@@ -17,7 +17,7 @@ import {UploadComponent} from './components/upload/upload.component';
 import {MatIcon} from "@angular/material/icon";
 import {HeaderComponent} from './components/header/header.component';
 import {MatToolbar} from "@angular/material/toolbar";
-import {MatButton, MatFabButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatIconButton} from "@angular/material/button";
 import {FooterComponent} from './components/footer/footer.component';
 import {AudioPlayerComponent} from './components/audio-player/audio-player.component';
 import {MatSlider} from "@angular/material/slider";
@@ -28,19 +28,17 @@ import {MatInput} from "@angular/material/input";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 import {PreSearchComponent} from './components/pre-search/pre-search.component';
 import {MatListSubheaderCssMatStyler} from "@angular/material/list";
-import { MusicComponent } from './components/music/music.component';
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import { SongCardComponent } from './components/song-card/song-card.component';
 import { FileConverterComponent } from './components/file-converter/file-converter.component';
 import {MatProgressBar} from "@angular/material/progress-bar";
-import {NgOptimizedImage} from "@angular/common";
 import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
 import { MetadataEditComponent } from './components/metadata-edit/metadata-edit.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelect} from "@angular/material/select";
-import {MatDialogActions, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
-import { MatDialogModule } from '@angular/material/dialog';
-
+import {MusicComponent} from "./components/music/music.component";
+import {NgOptimizedImage} from "@angular/common";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     PreSearchComponent,
     MusicComponent,
     SongCardComponent,
+    MetadataEditComponent,
     FileConverterComponent,
     MetadataEditComponent,
     UploadComponent,
@@ -71,34 +70,37 @@ import { MatDialogModule } from '@angular/material/dialog';
       SearchComponent,
       MatIcon,
       MatToolbar,
-      MatButton,
-      FormsModule,
-      MatSlider,
-      MatIconButton,
+    MatButton,
+    FormsModule,
+    MatSlider,
+    MatIconButton,MatDivider,
+      MatInput,
+      MatLabel,
+      MatChipListbox,
+      MatChipOption,
+      MatListSubheaderCssMatStyler,
       MatDivider,
       MatInput,
       MatLabel,
       MatChipListbox,
       MatChipOption,
       MatListSubheaderCssMatStyler,
-      MatGridList,
-      MatGridTile,
-      MatFabButton,
-      MatProgressBar,
-      NgOptimizedImage,
-      MatInput,
-      MatFormFieldModule,
+      SignupComponent,
+    SignupComponent,
       MatSelect,
-      MatDialogContent,
-      MatDialogTitle,
-      MatDialogActions,
-      MatDialogModule
+      NgOptimizedImage,
+      MatProgressSpinner,
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([authHeaderInterceptor])),
   ],
+  exports: [
+    AudioPlayerComponent,
+    SongCardComponent
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

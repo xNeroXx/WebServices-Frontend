@@ -1,13 +1,14 @@
 <div class="song-card" *ngIf="song">
-  <img class="song-image" [src]="song.imageUrl" alt="{{ song.title }}">
+  <img class="song-image" src="../../../assets/img/music-card-banner.jpg" alt="{{ song.title }}" height="736"
+       width="736">
   <div class="song-details">
     <h3 class="song-title">{{ song.title }}</h3>
-    <p class="song-artist">{{ song.artist }}</p>
+    <p class="song-artist">{{ song.interpret }}</p>
     <div class="button-group">
       <button (click)="togglePlay()">
         <mat-icon>{{ isPlaying ? 'pause_circle_outline' : 'play_circle_outline' }}</mat-icon>
       </button>
-      <button (click)="openConversionDialog()">
+      <button (click)="openConversionDialog(song.file_id)">
         <mat-icon>change_circle</mat-icon>
       </button>
       <button (click)="openMetadataEditDialog()">
@@ -15,4 +16,8 @@
       </button>
     </div>
   </div>
+  <audio controls *ngIf="song.audioSrc">
+    <source [src]="song.audioSrc" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </div>
