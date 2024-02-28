@@ -9,9 +9,10 @@ import {SongData} from "../../interfaces/song-data";
 })
 export class MusicComponent implements OnInit {
   songs: SongData[] = [];
-  @Input() song_id: number | undefined;
-  audioUrl: string | undefined;
-  selectedAudioSrc: string | null = null;
+  selectedSong: SongData | null = null;
+ // @Input() song_id: number | undefined;
+  //audioUrl: string | undefined;
+ // selectedAudioSrc: string | null = null;
   isPlaying: boolean = false;
 
   constructor(private songService: SongService) {
@@ -24,26 +25,30 @@ export class MusicComponent implements OnInit {
 
   loadSongs(): void {
     this.songService.getAllSongs().subscribe(
-      (data: any[]) => {
+      (data: SongData[]) => {
         this.songs = data;
       },
-   /**   (error) => {
+      (error) => {
         console.error("Failed to load songs:", error);
-      }  */
+      }
     );
   }
 
+  playSong(song: SongData) {
+    this.selectedSong = song;
+    this.isPlaying = true;
+  }
+  /**
   playSong(song_id: number) {
     console.log('Playing song with id:', song_id);
     this.songService.getAudioSource(song_id).subscribe((response: Blob) => {
       this.audioUrl = URL.createObjectURL(response);
     });
-
-  /**  if (this.selectedAudioSrc === audioSrc) {
+    if (this.selectedAudioSrc === this.audioUrl) {
       this.isPlaying = !this.isPlaying;
     } else {
-      this.selectedAudioSrc = audioSrc;
+      // this.selectedAudioSrc = audioUrl;
       this.isPlaying = true;
-    } */
-  }
+    }
+  } */
 }

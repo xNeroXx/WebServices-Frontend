@@ -1,4 +1,4 @@
-<div class="song-card" *ngIf="song">
+<div class="song-card" [class.selected]="isSelected">
   <img class="song-image" src="../../../assets/img/music-card-banner.jpg" alt="{{ song.title }}" height="736"
        width="736">
   <div class="song-details">

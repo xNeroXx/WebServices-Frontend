@@ -12,29 +12,27 @@ import {SongData} from "../../interfaces/song-data";
 })
 export class SongCardComponent {
   @Input() song: any;
-  @Input() audioFile: File | undefined;
+  //@Input() audioFile: File | undefined;
+  @Input() isSelected: boolean = false;
   @Input() isPlaying: boolean = false;
   @Output() play = new EventEmitter<number>();
 
   constructor(private audioPlayerService: AudioPlayerService, private dialog: MatDialog) {
   }
 
+  /**
   ngOnInit() {
     this.audioPlayerService.isPlaying$.subscribe(isPlaying => {
       this.audioPlayerService.currentSong$.subscribe(currentSong => {
         this.isPlaying = isPlaying //&& this.song! === currentSong;
       });
     });
-  }
+  } */
 
   togglePlay() {
-
-      this.audioPlayerService.togglePlay(this.song.id);
-      this.isPlaying = true;
-      console.log(this.song);
-
-    //this.isPlaying = false;
-
+    if (this.song) {
+      this.play.emit(this.song);
+    }
   }
 
   openMetadataEditDialog(): void {
