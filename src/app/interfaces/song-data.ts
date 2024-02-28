@@ -5,5 +5,6 @@ export interface SongData {
   album: string,
   genre: string,
   releaseYear: number,
-  duration: number
+  duration: number,
+  audioSrc: string
 }

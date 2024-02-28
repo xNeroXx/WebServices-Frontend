@@ -7,7 +7,7 @@ import {SongData} from "../interfaces/song-data";
   providedIn: 'root'
 })
 export class SongService {
-  private searchURL = 'http://127.0.0.1:8000/api/search/search/combined';
+  private searchURL = 'http://localhost:8000/api/search/search/combined';
   private apiUrl = 'http://localhost:8000/api/crud/file';
 
   constructor(private http: HttpClient) { }
