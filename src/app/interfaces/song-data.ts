@@ -8,6 +8,7 @@ export interface SongData {
   duration: number,
   song_id: number,
   file_id: number,
+  artist: string,
 }
 
 export function createSongData(data: Partial<SongData> = {}): SongData {
