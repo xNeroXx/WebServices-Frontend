@@ -1,16 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginFormComponent} from "./components/login-form/login-form.component";
-import {DummyComponent} from "./components/dummy/dummy.component";
 import {HomeComponent} from "./components/home/home.component";
-import {MainPageComponent} from "./components/main-page/main-page.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {PreSearchComponent} from "./components/pre-search/pre-search.component";
 import {SearchResultsComponent} from "./components/search-results/search-results.component";
 import {authGuard} from "./classes/AuthGuard";
 import {MusicComponent} from "./components/music/music.component";
-import {SongCardComponent} from "./components/song-card/song-card.component";
-import {AudioPlayerComponent} from "./components/audio-player/audio-player.component";
 
 const routes: Routes = [
 

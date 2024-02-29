@@ -13,7 +13,7 @@
     <div class="presearch-content-format">
       <div class="presearch-scroll">
         <div class="result-amount">
-          <span>{{this.searchService.categorySearchResults.length + " Ergebniss(e) für Suchbegriff: '" + this.searchService.searchValue + "'"}}</span>
+          <span>{{ this.searchService.categorySearchResults.length + " Ergebniss(e) für Suchbegriff: '" + this.searchService.searchValue + "'" }}</span>
         </div>
         <div matSubheader class="presearch-header">
           <span class="text-decoration-underline">Wählen Sie eine Option aus der Liste aus</span>
@@ -24,7 +24,7 @@
               <mat-divider></mat-divider>
             }
             <div class="option" (click)="handleOptionSelection(option)">
-              <span class="lead option-text">{{option}}</span>
+              <span class="lead option-text">{{ option }}</span>
             </div>
           }
         </div>

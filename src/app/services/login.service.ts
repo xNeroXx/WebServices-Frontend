@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {StatusMessageService} from "./status-message.service";
@@ -9,7 +9,8 @@ import {StatusMessageService} from "./status-message.service";
 export class LoginService {
   private loginApiURL = "https://api.example.com" //todo;
 
-  constructor(private http: HttpClient, private statusMessageService: StatusMessageService) { }
+  constructor(private http: HttpClient, private statusMessageService: StatusMessageService) {
+  }
 
   login(userEmail: string = '', userPassword: string = '') {
     let userData = {userEmail, userPassword};
@@ -22,7 +23,7 @@ export class LoginService {
 
   }
 
-  loginApiCall(userData: {[key:string]:string}): Observable<any> {
+  loginApiCall(userData: { [key: string]: string }): Observable<any> {
     return this.http.post(this.loginApiURL, userData).pipe(
       catchError((error) => {
         console.error("API Error:", error);

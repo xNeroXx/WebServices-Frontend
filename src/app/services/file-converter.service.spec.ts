@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { FileConverterService } from './file-converter.service';
+import {FileConverterService} from './file-converter.service';
 
 describe('FileConverterService', () => {
   let service: FileConverterService;

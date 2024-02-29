@@ -1,4 +1,4 @@
-import {Component, Inject, Input, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {DialogService} from '../../services/dialog.service';
 import {FileConverterService} from '../../services/file-converter.service';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";

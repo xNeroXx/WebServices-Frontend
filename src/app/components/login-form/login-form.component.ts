@@ -24,7 +24,8 @@ export class LoginFormComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
 
   /*getErrorMessage() {
     if (this.loginForm.get('email')?.hasError('required')) {
@@ -43,8 +44,7 @@ export class LoginFormComponent {
     } else if (field == 1) {
       if (this.loginForm.get('password')?.hasError('required')) {
         return 'Darf nicht leer sein';
-      }
-      else if (this.loginForm.get('password')?.hasError('minlength')) {
+      } else if (this.loginForm.get('password')?.hasError('minlength')) {
         return 'Mindestens 8 Zeichen'
       }
       return this.loginForm.get('password')?.hasError('*') ? 'Kein valides Passwort' : '';

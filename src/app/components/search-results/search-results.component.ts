@@ -7,10 +7,11 @@ import {SongData} from "../../interfaces/song-data";
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss'
 })
-export class SearchResultsComponent implements OnInit{
+export class SearchResultsComponent implements OnInit {
   private searchResults: SongData[] = []
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) {
+  }
 
   ngOnInit() {
     this.searchResults = this.searchService.searchResponse;

@@ -1,8 +1,15 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "assets/css/defaults.scss";
 
-html, body { height: 100%; }
-body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .home {
   position: relative;
@@ -30,19 +37,19 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 /*
   styling snackbars
  */
-.mat-mdc-snack-bar-container.Snackbar-affirmative{
+.mat-mdc-snack-bar-container.Snackbar-affirmative {
   --mdc-snackbar-container-color: var(--main-color-affirm);
   --mat-mdc-snack-bar-button-color: var(--main-color-affirm);
   --mdc-snackbar-supporting-text-color: #fff;
 }
 
-.mat-mdc-snack-bar-container.Snackbar-error{
+.mat-mdc-snack-bar-container.Snackbar-error {
   --mdc-snackbar-container-color: var(--main-color-error);
   --mat-mdc-snack-bar-button-color: var(--main-color-error);
   --mdc-snackbar-supporting-text-color: #fff;
 }
 
-.mat-mdc-snack-bar-container.Snackbar-info{
+.mat-mdc-snack-bar-container.Snackbar-info {
   --mdc-snackbar-container-color: var(--main-color-info);
   --mat-mdc-snack-bar-button-color: var(--main-color-info);
   --mdc-snackbar-supporting-text-color: #fff;

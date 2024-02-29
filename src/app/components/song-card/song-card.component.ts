@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {AudioPlayerService} from '../../services/audio-player.service';
 import {MatDialog} from "@angular/material/dialog";
 import {MetadataEditComponent} from "../metadata-edit/metadata-edit.component";
 import {FileConverterComponent} from "../file-converter/file-converter.component";
@@ -17,28 +16,16 @@ export class SongCardComponent {
   @Output() play = new EventEmitter<number>();
   @Output() pause = new EventEmitter<number>();
 
-  constructor(private audioPlayerService: AudioPlayerService, private dialog: MatDialog) {
+  constructor(private dialog: MatDialog) {
   }
 
   togglePlay() {
     if (this.isPlaying) {
       this.pause.emit(); // Emit a pause event
     } else {
-      this.play.emit(this.song.song_id); // Emit a play event with the song ID
+      this.play.emit(this.song.song_id);
     }
   }
-
-
-  /**
-  togglePlay() {
-    this.isPlaying = !this.isPlaying;
-    if (this.isPlaying) {
-      this.play.emit(this.song.song_id);
-    } else {
-      this.audioPlayerService.pause();
-    }
-  } */
-
 
   openMetadataEditDialog(): void {
     const dialogRef = this.dialog.open(MetadataEditComponent, {

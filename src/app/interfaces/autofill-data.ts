@@ -1,4 +1,4 @@
-export interface AutofillData{
+export interface AutofillData {
   title: string[];
   interpret: string[];
   album: string[];

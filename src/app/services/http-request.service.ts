@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 
@@ -8,9 +8,10 @@ import {map, Observable} from "rxjs";
 export class HttpRequestService {
   private apiURL = ""; //TODO
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  requestLogin(userData: {[key:string]:string}): Observable<string> {
+  requestLogin(userData: { [key: string]: string }): Observable<string> {
     return this.http.post<any>(this.apiURL + "/Login", userData).pipe(
       map(response => {
         if (response && response.access_token) {

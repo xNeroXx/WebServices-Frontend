@@ -1,8 +1,9 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { UploadService } from '../../services/upload.service';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {UploadService} from '../../services/upload.service';
 import {isPlatformBrowser, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatFabButton} from "@angular/material/button";
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',

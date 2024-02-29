@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -24,7 +24,9 @@ export class SignupComponent {
   });
   hide = true;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
+
   /*
     getErrorMessage() {
       if (this.email.hasError('required')) {

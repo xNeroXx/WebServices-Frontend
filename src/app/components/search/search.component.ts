@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {debounceTime, Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AsyncPipe} from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {UploadComponent} from "../upload/upload.component";
 import {SearchService} from "../../services/search.service";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
@@ -40,7 +37,7 @@ export interface CategoryOption {
 export class SearchComponent implements OnInit {
   searchCategory: string = 'title';
   searchValue: string = '';
-  autoCompleteData: {[category: string]: string[]} = {};
+  autoCompleteData: { [category: string]: string[] } = {};
   //autoCompleteData: SearchOption[] = [];
   //filteredAutoCompleteData: Observable<string[]> | undefined;
   searchForm = new FormGroup({
@@ -48,7 +45,15 @@ export class SearchComponent implements OnInit {
     searchCategory: new FormControl('title')
   });
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) {
+  }
+
+  get filteredAutoCompleteData(): string[] {
+    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
+
+    //return this.autoCompleteData[this.searchForm.value.searchCategory ?? 'title'].filter(option => option.toLowerCase().includes(filterValue));
+    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
+  }
 
   ngOnInit() {
     //this.searchService.getAutoCompleteData(); TODO remove Comment
@@ -56,7 +61,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSearchSubmit() {
-    this.searchForm.value.searchValue =  (document.getElementById('searchbar') as HTMLInputElement).value
+    this.searchForm.value.searchValue = (document.getElementById('searchbar') as HTMLInputElement).value
     this.searchService.categorySearchResults = this.filteredAutoCompleteData;
     this.searchValue = this.searchForm.value.searchValue ?? '';
     this.searchCategory = this.searchForm.value.searchCategory ?? 'title';
@@ -65,12 +70,5 @@ export class SearchComponent implements OnInit {
 
   loadAutoCompleteData() {
     this.searchService.foo();
-  }
-
-  get filteredAutoCompleteData(): string[] {
-    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
-
-    //return this.autoCompleteData[this.searchForm.value.searchCategory ?? 'title'].filter(option => option.toLowerCase().includes(filterValue));
-    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
   }
 }

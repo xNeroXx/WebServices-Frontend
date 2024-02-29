@@ -1,4 +1,4 @@
-import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -19,7 +19,6 @@ import {HeaderComponent} from './components/header/header.component';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {FooterComponent} from './components/footer/footer.component';
-import {AudioPlayerComponent} from './components/audio-player/audio-player.component';
 import {MatSlider} from "@angular/material/slider";
 import {SignupComponent} from './components/signup/signup.component';
 import {SearchResultsComponent} from './components/search-results/search-results.component';
@@ -46,7 +45,6 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    AudioPlayerComponent,
     SearchResultsComponent,
     PreSearchComponent,
     SongCardComponent,
@@ -90,7 +88,6 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     provideHttpClient(withFetch(), withInterceptors([authHeaderInterceptor])),
   ],
   exports: [
-    AudioPlayerComponent,
     SongCardComponent
   ],
   bootstrap: [AppComponent]

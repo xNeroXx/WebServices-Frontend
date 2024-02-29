@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MetadataEditComponent } from './metadata-edit.component';
+import {MetadataEditComponent} from './metadata-edit.component';
 
 describe('MetadataEditComponent', () => {
   let component: MetadataEditComponent;
@@ -10,8 +10,8 @@ describe('MetadataEditComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [MetadataEditComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(MetadataEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
