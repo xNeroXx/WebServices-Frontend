@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, throwError} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -13,7 +12,6 @@ export class DeleteService {
   constructor(private http: HttpClient) {
   }
 
-  ///${this.apiUrl}
   deleteSong(songId: number): Observable<any> {
     const url = `${this.apiUrl}/${songId}`;
     return this.http.delete(url);
