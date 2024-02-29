@@ -53,23 +53,22 @@ export class MusicComponent implements OnInit {
       }
     );
   }
-
-/**
-  playSong(song: SongData) {
-    this.selectedSong = song;
-    this.isPlaying = true;
-  } */
-  /**
-  playSong(song_id: number) {
-    console.log('Playing song with id:', song_id);
-    this.songService.getAudioSource(song_id).subscribe((response: Blob) => {
-      this.audioUrl = URL.createObjectURL(response);
-    });
-    if (this.selectedAudioSrc === this.audioUrl) {
-      this.isPlaying = !this.isPlaying;
-    } else {
-      // this.selectedAudioSrc = audioUrl;
-      this.isPlaying = true;
-    }
-  } */
 }
+/**
+ playSong(song: SongData) {
+ this.selectedSong = song;
+ this.isPlaying = true;
+ } */
+/**
+ playSong(song_id: number) {
+ console.log('Playing song with id:', song_id);
+ this.songService.getAudioSource(song_id).subscribe((response: Blob) => {
+ this.audioUrl = URL.createObjectURL(response);
+ });
+ if (this.selectedAudioSrc === this.audioUrl) {
+ this.isPlaying = !this.isPlaying;
+ } else {
+ // this.selectedAudioSrc = audioUrl;
+ this.isPlaying = true;
+ }
+ } */

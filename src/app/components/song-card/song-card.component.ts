@@ -30,10 +30,21 @@ export class SongCardComponent {
   } */
 
   togglePlay() {
+    this.isPlaying = !this.isPlaying;
+    if (this.isPlaying) {
+      this.play.emit(this.song.song_id);
+      this.audioPlayerService.play(this.song.audioSrc);
+    } else {
+      this.audioPlayerService.pause();
+    }
+  }
+
+  /**
+  togglePlay() {
     if (this.song) {
       this.play.emit(this.song.song_id);
     }
-  }
+  } */
 
   openMetadataEditDialog(): void {
     const dialogRef = this.dialog.open(MetadataEditComponent, {
