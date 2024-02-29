@@ -8,12 +8,15 @@ import {MetadataService} from '../../services/metadata.service';
   styleUrls: ['./metadata-edit.component.scss']
 })
 export class MetadataEditComponent {
+  selectedArtistName: string;
+
 
   constructor(
     public dialogRef: MatDialogRef<MetadataEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private metadataService: MetadataService
   ) {
+    this.selectedArtistName = data.song.artist[0].name;
   }
 
   cancel(): void {
@@ -21,12 +24,10 @@ export class MetadataEditComponent {
   }
 
   save(): void {
-    this.metadataService.updateMetadata(this.data.song).subscribe(() => {
-      console.log('Metadata updated successfully');
+    this.metadataService.changeMetadata(this.data.song).subscribe(() => {
       this.dialogRef.close();
     }, (error: any) => {
       console.error('Error updating metadata:', error);
     });
   }
-
 }

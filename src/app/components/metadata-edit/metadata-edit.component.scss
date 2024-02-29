@@ -13,13 +13,8 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; /* Hier wird flex-wrap hinzugefügt */
 }
-
-.custom-input-field {
-  flex: 1;
-  margin-right: 10px;
-}
-
 
 .custom-dialog-footer {
   background-color: #f0f0f0;
@@ -29,4 +24,20 @@
 
 .custom-dialog-button {
   margin-left: 8px;
+}
+
+.custom-input-field {
+  width: calc(50% - 16px);
+  margin-right: 16px;
+}
+
+.custom-input-field:nth-child(even) {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .custom-input-field {
+    width: 100%;
+    margin-right: 0;
+  }
 }

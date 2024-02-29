@@ -1,9 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {SongService} from "../../services/song.service";
 import {SongData} from "../../interfaces/song-data";
-import {MatDialog} from "@angular/material/dialog";
-import {DialogService} from "../../services/dialog.service";
-
 @Component({
   selector: 'app-music',
   templateUrl: './music.component.html',
