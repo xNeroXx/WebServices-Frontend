@@ -48,9 +48,7 @@ export class SearchService {
   }
 
   private _searchForSongs(searchValue: string, searchCategory: string) {
-    let searchData: {[p: string]: string} = {};
-    searchData[searchCategory] = searchValue;
-    this.http.post<SongData[]>(this.searchURL, {searchData}).subscribe( //TODO research errorhandling thats not deprecated
+    this.http.post<SongData[]>(this.searchURL + 'combined', {[searchCategory]: searchValue}).subscribe( //TODO research errorhandling thats not deprecated
       (data) => {
         this.searchResponse = data;
         this.router.navigate(['/searchResults']);
