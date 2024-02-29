@@ -6,4 +6,6 @@ export interface SongData {
   genre: string,
   releaseYear: number,
   duration: number,
+  song_id: number,
+  file_id: number,
 }
