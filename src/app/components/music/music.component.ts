@@ -1,8 +1,6 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {SongService} from "../../services/song.service";
 import {SongData} from "../../interfaces/song-data";
-import {log} from "node:util";
-import {AudioPlayerComponent} from "../audio-player/audio-player.component";
 
 @Component({
   selector: 'app-music',
@@ -12,9 +10,6 @@ import {AudioPlayerComponent} from "../audio-player/audio-player.component";
 export class MusicComponent implements OnInit {
   songs: SongData[] = [];
   selectedSong: SongData | null = null;
-  @ViewChild(AudioPlayerComponent) audioPlayerComponent!: AudioPlayerComponent;
-  audioUrl: string | undefined;
-  currentPlayingSongId: number | null = null;
   audioPlayer: HTMLAudioElement | null = null;
   selectedSongId: number | null = null;
   isPlaying = false;
@@ -42,16 +37,14 @@ export class MusicComponent implements OnInit {
 
   playSong(songId: number): void {
     if (this.selectedSongId === songId && this.isPlaying) {
-      // Wenn der angeklickte Song bereits abgespielt wird, pausiere ihn
       this.isPlaying = false;
       if (this.audioPlayer) {
-        this.audioPlayer.pause(); // Pausiere die Audiowiedergabe
+        this.audioPlayer.pause();
       }
       this.selectedSongId = null;
     } else {
-      // Wenn ein neuer Song angeklickt wird, spiele ihn ab
       if (this.audioPlayer) {
-        this.audioPlayer.pause(); // Pausiere die aktuelle Audiowiedergabe
+        this.audioPlayer.pause();
       }
       this.songService.getAudioSource(songId).subscribe(
         (blob: Blob) => {
@@ -68,11 +61,10 @@ export class MusicComponent implements OnInit {
     }
   }
 
-
   pauseSong(): void {
     if (this.audioPlayer) {
-      this.audioPlayer.pause(); // Pausiere die Audiowiedergabe
-      this.isPlaying = false; // Setze den Abspielstatus auf false
+      this.audioPlayer.pause();
+      this.isPlaying = false;
     }
   }
 

@@ -3,9 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import {MainPageComponent} from "./components/main-page/main-page.component";
 
 import {LoginFormComponent} from "./components/login-form/login-form.component";
-import {DummyComponent} from "./components/dummy/dummy.component";
 import {HomeComponent} from "./components/home/home.component";
-import {MainPageComponent} from "./components/main-page/main-page.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {PreSearchComponent} from "./components/pre-search/pre-search.component";
 import {SearchResultsComponent} from "./components/search-results/search-results.component";

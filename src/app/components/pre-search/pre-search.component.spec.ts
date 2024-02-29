@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PreSearchComponent } from './pre-search.component';
+import {PreSearchComponent} from './pre-search.component';
 
 describe('PreSearchComponent', () => {
   let component: PreSearchComponent;
@@ -10,8 +10,8 @@ describe('PreSearchComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [PreSearchComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(PreSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

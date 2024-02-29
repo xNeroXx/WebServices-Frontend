@@ -1,15 +1,19 @@
-<form [formGroup]="searchForm" class="example-form" (ngSubmit)="onSearchSubmit()">
+<form (ngSubmit)="onSearchSubmit()" [formGroup]="searchForm" class="example-form">
   <mat-form-field class="example-full-width">
-    <input type="text" matInput placeholder="Suche..." formControlName="searchValue" [matAutocomplete]="auto" id="searchbar">
-    <mat-autocomplete #auto="matAutocomplete" hideSingleSelectionIndicator="true" id="search-autocomplete"> <!--TODO  autoSelectActiveOption="true" ja/nein-->
+    <input [matAutocomplete]="auto" formControlName="searchValue" id="searchbar" matInput placeholder="Suche..."
+           type="text">
+    <mat-autocomplete #auto="matAutocomplete" hideSingleSelectionIndicator="true" id="search-autocomplete">
+      <!--TODO  autoSelectActiveOption="true" ja/nein-->
       @for (data of filteredAutoCompleteData; track $index) {
-        <mat-option [value]="data">{{data}}</mat-option>
+        <mat-option [value]="data">{{ data }}</mat-option>
       }
       @if (filteredAutoCompleteData.length == 0) {
         <mat-option [value]="" disabled>-- Keine Daten Verfügbar --</mat-option>
       }
     </mat-autocomplete>
-    <button matSuffix mat-icon-button color="primary" class="icon-button" id="search-submit"><mat-icon>search</mat-icon></button>
+    <button class="icon-button" color="primary" id="search-submit" mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
   </mat-form-field>
   <div class="center-chipbox">
     <mat-chip-listbox aria-label="Category Selection" class="category-selection" formControlName="searchCategory">

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FileConverterComponent } from './file-converter.component';
+import {FileConverterComponent} from './file-converter.component';
 
 describe('FileConverterComponent', () => {
   let component: FileConverterComponent;
@@ -10,8 +10,8 @@ describe('FileConverterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [FileConverterComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(FileConverterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

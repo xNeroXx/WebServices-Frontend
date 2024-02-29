@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { UploadService } from '../../services/upload.service';
+import {Component} from '@angular/core';
+import {UploadService} from '../../services/upload.service';
 
 @Component({
   selector: 'app-upload',
@@ -10,7 +10,8 @@ export class UploadComponent {
   fileName: string = '';
   progress: number = 0;
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: UploadService) {
+  }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];

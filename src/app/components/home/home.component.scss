@@ -5,8 +5,7 @@
   overflow-y: hidden;
 }
 
-.home img
-{
+.home img {
   width: 100%;
   height: auto;
   object-position: center;
@@ -14,8 +13,7 @@
   filter: brightness(20%);
 }
 
-.homecontent
-{
+.homecontent {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -24,8 +22,8 @@
   text-align: center;
   width: 100%;
 }
-.homecontent h1
-{
+
+.homecontent h1 {
   color: #ffffff;
   font-size: 50px;
   font-weight: bold;
@@ -61,14 +59,11 @@
   margin-left: 10px;
 }
 
-@media screen and (max-width:600px)
-{
-  .home img
-  {
+@media screen and (max-width: 600px) {
+  .home img {
     height: 700px;
   }
-  .homecontent h1
-  {
+  .homecontent h1 {
     font-size: 40px;
   }
 }

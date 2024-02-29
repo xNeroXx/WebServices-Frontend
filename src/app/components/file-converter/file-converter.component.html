@@ -12,8 +12,8 @@
     </mat-form-field>
   </div>
   <div class="custom-dialog-footer">
-    <button mat-button (click)="cancel()">Abbrechen</button>
-    <button mat-button color="primary" (click)="convert()" [disabled]="loading">Konvertieren</button>
+    <button (click)="cancel()" mat-button>Abbrechen</button>
+    <button (click)="convert()" [disabled]="loading" color="primary" mat-button>Konvertieren</button>
   </div>
 
   <div *ngIf="loading" class="overlay">

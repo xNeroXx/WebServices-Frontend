@@ -1,5 +1,5 @@
-<div class="song-card" [class.selected]="isSelected">
-  <img class="song-image" src="../../../assets/img/music-card-banner.jpg" alt="{{ song.title }}" height="736"
+<div [class.selected]="isSelected" class="song-card">
+  <img alt="{{ song.title }}" class="song-image" height="736" src="../../../assets/img/music-card-banner.jpg"
        width="736">
   <div class="song-details">
     <h3 class="song-title">{{ song.title }}</h3>
@@ -16,9 +16,4 @@
       </button>
     </div>
   </div>
-  <!--
-  <audio controls *ngIf="song.audioSrc">
-    <source [src]="song.audioSrc" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio> -->
 </div>

@@ -1,6 +1,6 @@
-import {Injectable, PLATFORM_ID, Inject} from "@angular/core";
+import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
-import { isPlatformBrowser } from '@angular/common';
+import {isPlatformBrowser} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +41,11 @@ export class AudioPlayerService {
   }
 
   togglePlay(song_id: number) {
-  /*  if (this._isPlaying.value && this._currentSong.value) { // === audioSrc) {
-      this.pause();
-    } else { */
-   //   this.play(song_id);
-   // }
+    /*  if (this._isPlaying.value && this._currentSong.value) { // === audioSrc) {
+        this.pause();
+      } else { */
+    //   this.play(song_id);
+    // }
   }
 }
 
