@@ -1,24 +1,29 @@
 export interface SongData {
-  id: number,
+  file_id: number,
+  duration: number,
   title: string,
-  interpret: string[],
+  release_date: number,
+  song_id: number,
   album: string,
   genre: string,
-  releaseYear: number,
-  duration: number,
-  song_id: number,
-  file_id: number,
-  artist: string,
+  artists: Artist[]
 }
 
-export function createSongData(data: Partial<SongData> = {}): SongData {
+export function createAutofillData(data: Partial<SongData> = {}): SongData {
   return {
-    'id': data.id || 0,
+    'file_id': data.file_id || 0,
+    'duration': data.duration || 0,
     'title': data.title || '',
-    'interpret': data.interpret || [],
+    'release_date': data.release_date || 0,
+    'song_id': data.song_id || 0,
     'album': data.album || '',
     'genre': data.genre || '',
-    'releaseYear': data.releaseYear || 0,
-    'duration': data.duration || 0
+    'artists': data.artists || [],
   };
 }
+
+export interface Artist {
+  name: string;
+  artist_id: number;
+}
+
