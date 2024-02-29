@@ -19,8 +19,6 @@ export class SongCardComponent {
   @Output() pause = new EventEmitter<number>();
   @Output() deleteSong: EventEmitter<number> = new EventEmitter<number>();
   deletingSong: boolean = false;
-  deleteSuccess: boolean = false;
-  loading: boolean = false;
 
 
   constructor(private dialog: MatDialog,
@@ -46,6 +44,11 @@ export class SongCardComponent {
   }
 
   openMetadataEditDialog(): void {
+    if (this.song.artist && this.song.artist.length > 0) {
+      console.log('Song über metadata geöffnet: ', this.song.artist[0]);
+    } else {
+      console.log('Song hat keine Künstlerinformationen');
+    }
     const dialogRef = this.dialog.open(MetadataEditComponent, {
       width: '600px',
       data: {song: this.song}

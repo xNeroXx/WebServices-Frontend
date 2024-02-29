@@ -9,3 +9,9 @@
 <div *ngIf="selectedFile">
   <p>Hochzuladende Datei: {{ selectedFile.name }}</p>
 </div>
+
+<div *ngIf="errorMessage" >
+  {{ errorMessage }}
+</div>
+
+

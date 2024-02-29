@@ -8,5 +8,11 @@ export interface SongData {
   duration: number,
   song_id: number,
   file_id: number,
-  artist: string,
+  artist: Artist[]
 }
+
+export interface Artist {
+  id: number;
+  name: string;
+}
+

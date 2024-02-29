@@ -17,7 +17,7 @@ import {UploadComponent} from './components/upload/upload.component';
 import {MatIcon} from "@angular/material/icon";
 import {HeaderComponent} from './components/header/header.component';
 import {MatToolbar} from "@angular/material/toolbar";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatFabButton, MatIconButton} from "@angular/material/button";
 import {FooterComponent} from './components/footer/footer.component';
 import {MatSlider} from "@angular/material/slider";
 import {SignupComponent} from './components/signup/signup.component';
@@ -50,7 +50,9 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     SongCardComponent,
     MetadataEditComponent,
     FileConverterComponent,
-    MusicComponent
+    MusicComponent,
+    UploadComponent
+
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatSelect,
     NgOptimizedImage,
     MatProgressSpinner,
-    UploadComponent,
+    MatFabButton,
+
 
   ],
   providers: [

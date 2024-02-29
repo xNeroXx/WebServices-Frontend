@@ -2,7 +2,10 @@
   <img alt="{{ song.title }}" class="song-image" height="736" src="../../../assets/img/music-card-banner.jpg" width="736">
   <div class="song-details">
     <h3 class="song-title">{{ song.title }}</h3>
-    <p class="song-artist">{{ song.artist }}</p>
+    <div *ngFor="let artist of song.artist">
+      <p class="song-artist" *ngIf="artist.name">{{ artist.name }}</p>
+    </div>
+
     <div class="button-group">
       <button (click)="togglePlay()">
         <mat-icon>{{ isPlaying ? 'pause_circle_outline' : 'play_circle_outline' }}</mat-icon>

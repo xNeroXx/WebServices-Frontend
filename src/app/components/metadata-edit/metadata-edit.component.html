@@ -12,7 +12,26 @@
     <div class="custom-input-field">
       <mat-form-field appearance="outline" class="input-field">
         <mat-label>Artist</mat-label>
-        <input [(ngModel)]="data.song.artist" matInput placeholder="Enter artist">
+        <input [(ngModel)]="selectedArtistName" matInput placeholder="Enter artist">
+      </mat-form-field>
+    </div>
+
+    <div class="custom-input-field">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Genre</mat-label>
+        <input [(ngModel)]="data.song.genre" matInput placeholder="Enter genre">
+      </mat-form-field>
+    </div>
+    <div class="custom-input-field">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Album</mat-label>
+        <input [(ngModel)]="data.song.album" matInput placeholder="Enter album">
+      </mat-form-field>
+    </div>
+    <div class="custom-input-field">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Date</mat-label>
+        <input [(ngModel)]="data.song.date" matInput placeholder="Enter date">
       </mat-form-field>
     </div>
   </div>
@@ -21,4 +40,3 @@
     <button (click)="save()" color="primary" mat-button>Speichern</button>
   </div>
 </div>
-
