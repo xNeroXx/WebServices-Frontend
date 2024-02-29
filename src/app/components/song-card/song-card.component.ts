@@ -60,7 +60,7 @@ export class SongCardComponent {
   }
 
   onDeleteSong(songId: number) {
-    this.deleteService.deleteSong(this.song.song_id).subscribe(
+    this.deleteService.deleteSong(songId).subscribe(
       () => {
         this.statusMessageService.showStatusMessage('Song erfolgreich gelöscht');
         window.location.reload();
