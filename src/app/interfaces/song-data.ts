@@ -6,7 +6,6 @@ export interface SongData {
   genre: string,
   releaseYear: number,
   duration: number,
-  audioSrc: string
 }
 
 export function createSongData(data: Partial<SongData> = {}): SongData {

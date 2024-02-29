@@ -3,15 +3,29 @@
             *ngFor="let song of songs"
             [song]="song"
             [isSelected]="selectedSong === song"
-            (play)="playSong(song)"
+            (play)="playSong(song.song_id)"
     ></app-song-card>
 </div>
+
+<app-audio-player
+  *ngIf="selectedSong"
+  [audioSrc]="audioSrc"
+  [isPlaying]="isPlaying"
+></app-audio-player> -->
+
+<!--
+<audio #audioPlayer controls *ngIf="audioSrc">
+  <source [src]="audioSrc" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+-->
+<!--
 <app-audio-player
         *ngIf="selectedSong"
-        [audioSrc]="selectedSong.audioSrc"
+        [audioSrc]="selectedSong.id"
         [isPlaying]="isPlaying"
 ></app-audio-player>
-
+-->
 
 <!--
 <div class="music-container">
