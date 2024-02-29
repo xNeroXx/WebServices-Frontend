@@ -1,0 +1,17 @@
+<input #fileInput (change)="onFileSelected($event)" accept="audio/*" style="display: none" type="file"/>
+<button (click)="fileInput.click()" color="primary" extended mat-fab>
+  <mat-icon>upload</mat-icon>
+  Datei auswählen
+</button>
+
+<button (click)="onUpload()" *ngIf="selectedFile" color="primary" mat-button>Upload starten</button>
+
+<div *ngIf="selectedFile">
+  <p>Hochzuladende Datei: {{ selectedFile.name }}</p>
+</div>
+
+<div *ngIf="errorMessage" >
+  {{ errorMessage }}
+</div>
+
+

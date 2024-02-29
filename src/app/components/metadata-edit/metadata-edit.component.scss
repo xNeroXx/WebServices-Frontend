@@ -1,0 +1,43 @@
+.custom-dialog {
+  font-family: 'Roboto', sans-serif;
+}
+
+.custom-dialog-header {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 16px;
+  font-size: 20px;
+}
+
+.custom-dialog-content {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Hier wird flex-wrap hinzugefügt */
+}
+
+.custom-dialog-footer {
+  background-color: #f0f0f0;
+  padding: 16px;
+  text-align: right;
+}
+
+.custom-dialog-button {
+  margin-left: 8px;
+}
+
+.custom-input-field {
+  width: calc(50% - 16px);
+  margin-right: 16px;
+}
+
+.custom-input-field:nth-child(even) {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .custom-input-field {
+    width: 100%;
+    margin-right: 0;
+  }
+}

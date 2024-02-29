@@ -1,25 +1,55 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "assets/css/defaults.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.home {
+  position: relative;
+}
+
+.home img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.homecontent {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+
+  h1 {
+    font-size: 50px;
+  }
+}
 
 /*
   styling snackbars
  */
-.mat-mdc-snack-bar-container.Snackbar-affirmative{
+.mat-mdc-snack-bar-container.Snackbar-affirmative {
   --mdc-snackbar-container-color: var(--main-color-affirm);
   --mat-mdc-snack-bar-button-color: var(--main-color-affirm);
   --mdc-snackbar-supporting-text-color: #fff;
 }
 
-.mat-mdc-snack-bar-container.Snackbar-error{
+.mat-mdc-snack-bar-container.Snackbar-error {
   --mdc-snackbar-container-color: var(--main-color-error);
   --mat-mdc-snack-bar-button-color: var(--main-color-error);
   --mdc-snackbar-supporting-text-color: #fff;
 }
 
-.mat-mdc-snack-bar-container.Snackbar-info{
+.mat-mdc-snack-bar-container.Snackbar-info {
   --mdc-snackbar-container-color: var(--main-color-info);
   --mat-mdc-snack-bar-button-color: var(--main-color-info);
   --mdc-snackbar-supporting-text-color: #fff;

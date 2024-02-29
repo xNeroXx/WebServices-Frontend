@@ -1,0 +1,24 @@
+<div [class.selected]="isSelected" class="song-card">
+  <img alt="{{ song.title }}" class="song-image" height="736" src="../../../assets/img/music-card-banner.jpg" width="736">
+  <div class="song-details">
+    <h3 class="song-title">{{ song.title }}</h3>
+    <div *ngFor="let artist of song.artist">
+      <p class="song-artist" *ngIf="artist.name">{{ artist.name }}</p>
+    </div>
+
+    <div class="button-group">
+      <button (click)="togglePlay()">
+        <mat-icon>{{ isPlaying ? 'pause_circle_outline' : 'play_circle_outline' }}</mat-icon>
+      </button>
+      <button (click)="openConversionDialog(song.file_id)">
+        <mat-icon>change_circle</mat-icon>
+      </button>
+      <button (click)="openMetadataEditDialog()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button (click)="onDeleteSong(song.song_id)" [disabled]="deletingSong">
+        <mat-icon>{{ deletingSong ? 'hourglass_top' : 'delete' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
@@ -6,9 +6,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class StatusMessageService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar) {
+  }
 
-  showStatusMessage(message: string, type : string = 'info') {
+  showStatusMessage(message: string, type: string = 'info') {
     this.snackBar.open(message, 'Schließen', {
       duration: 3000,
       panelClass: 'Snackbar-' + type,

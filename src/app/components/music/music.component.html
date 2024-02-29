@@ -1,0 +1,10 @@
+<div class="music-container">
+  <app-song-card
+    (pause)="pauseSong()"
+    (play)="playSong(song.song_id)"
+    *ngFor="let song of songs"
+    [isPlaying]="selectedSongId === song.song_id && isPlaying"
+    [isSelected]="selectedSong === song"
+    [song]="song"
+  ></app-song-card>
+</div>

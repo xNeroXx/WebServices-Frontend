@@ -1,0 +1,31 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.icon-button {
+  margin-right: 5px;
+}
+
+.center-chipbox {
+  display: flex;
+  justify-content: center;
+}
+
+.category-selection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -15px;
+  margin-bottom: 10px;
+}
+
+.chip-label {
+  height: fit-content;
+  margin: auto;
+}

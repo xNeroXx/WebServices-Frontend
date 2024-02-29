@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MainPageComponent } from './main-page.component';
+import {MainPageComponent} from './main-page.component';
 
 describe('HomeComponent', () => {
   let component: MainPageComponent;
@@ -10,7 +10,7 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [MainPageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(MainPageComponent);
     component = fixture.componentInstance;

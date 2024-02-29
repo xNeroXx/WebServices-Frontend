@@ -1,0 +1,22 @@
+header {
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    button {
+      color: white;
+    }
+  }
+}

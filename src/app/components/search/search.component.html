@@ -1,0 +1,27 @@
+<form (ngSubmit)="onSearchSubmit()" [formGroup]="searchForm" class="example-form">
+  <mat-form-field class="example-full-width">
+    <input [matAutocomplete]="auto" formControlName="searchValue" id="searchbar" matInput placeholder="Suche..."
+           type="text">
+    <mat-autocomplete #auto="matAutocomplete" hideSingleSelectionIndicator="true" id="search-autocomplete">
+      <!--TODO  autoSelectActiveOption="true" ja/nein-->
+      @for (data of filteredAutoCompleteData; track $index) {
+        <mat-option [value]="data">{{ data }}</mat-option>
+      }
+      @if (filteredAutoCompleteData.length == 0) {
+        <mat-option [value]="" disabled>-- Keine Daten Verfügbar --</mat-option>
+      }
+    </mat-autocomplete>
+    <button class="icon-button" color="primary" id="search-submit" mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+  <div class="center-chipbox">
+    <mat-chip-listbox aria-label="Category Selection" class="category-selection" formControlName="searchCategory">
+      <mat-label class="chip-label">Suche nach:</mat-label>
+      <mat-chip-option value="title">Titel</mat-chip-option>
+      <mat-chip-option value="interpret">Interpret</mat-chip-option>
+      <mat-chip-option value="album">Album</mat-chip-option>
+      <mat-chip-option value="genre">Genre</mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+</form>

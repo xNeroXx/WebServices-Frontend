@@ -2,17 +2,36 @@
   <div class="alignVertical">
     <div class="login-content">
       <div>
+        <div class="align-horizontal"><h1 class="login-header">Login</h1></div>
         <form [formGroup]="loginForm">
-          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+          <mat-form-field appearance="outline" class="form-field-full-width" color="primary">
             <mat-label>E-Mail</mat-label>
-            <input matInput required formControlName="email">
+            <input formControlName="email" matInput required>
+            @if (loginForm.get('email')?.invalid) {
+              <mat-error>{{ getErrorMessage(0) }}</mat-error>
+            }
           </mat-form-field>
-          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
+          <mat-form-field appearance="outline" class="form-field-full-width" color="primary">
             <mat-label>Passwort</mat-label>
-            <input matInput required formControlName="password">
+            <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput required>
+            <button (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'" [attr.aria-pressed]="hide" mat-icon-button
+                    matSuffix>
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            @if (loginForm.get('password')?.invalid) {
+              <mat-error>{{ getErrorMessage(1) }}</mat-error>
+            }
           </mat-form-field>
-          <button mat-button (click)="submit()">Fertig</button>
+          <button (click)="submit()" [disabled]="!loginForm.valid" color="primary" mat-stroked-button type="submit">
+            Fertig
+          </button>
         </form>
+      </div>
+
+      <div class="new-user-section">
+        <mat-divider></mat-divider>
+        <div class="new-user-hint lead"><p>Neu hier?</p></div>
+        <div><a class="btn-link" routerLink="/signup">Zur Registrierung</a></div>
       </div>
     </div>
   </div>
