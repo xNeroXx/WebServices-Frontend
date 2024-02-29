@@ -74,12 +74,11 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     MatChipListbox,
     MatChipOption,
     MatListSubheaderCssMatStyler,
-    UploadComponent,
     SignupComponent,
     MatSelect,
-    UploadComponent,
     NgOptimizedImage,
     MatProgressSpinner,
+    UploadComponent,
 
   ],
   providers: [

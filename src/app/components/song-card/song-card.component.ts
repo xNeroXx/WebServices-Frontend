@@ -3,6 +3,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {MetadataEditComponent} from "../metadata-edit/metadata-edit.component";
 import {FileConverterComponent} from "../file-converter/file-converter.component";
 import {SongData} from "../../interfaces/song-data";
+import {DeleteService} from "../../services/delete.service";
+import {StatusMessageService} from "../../services/status-message.service";
 
 @Component({
   selector: 'app-song-card',
@@ -15,8 +17,15 @@ export class SongCardComponent {
   @Input() isPlaying: boolean = false;
   @Output() play = new EventEmitter<number>();
   @Output() pause = new EventEmitter<number>();
+  @Output() deleteSong: EventEmitter<number> = new EventEmitter<number>();
+  deletingSong: boolean = false;
+  deleteSuccess: boolean = false;
+  loading: boolean = false;
 
-  constructor(private dialog: MatDialog) {
+
+  constructor(private dialog: MatDialog,
+              private deleteService: DeleteService,
+              private statusMessageService: StatusMessageService) {
   }
 
   togglePlay() {
@@ -25,6 +34,15 @@ export class SongCardComponent {
     } else {
       this.play.emit(this.song.song_id);
     }
+  }
+
+  openConversionDialog(file_id: number): void {
+    this.dialog.open(FileConverterComponent, {
+      width: '600px',
+      data: {
+        fileId: file_id,
+      }
+    });
   }
 
   openMetadataEditDialog(): void {
@@ -38,13 +56,16 @@ export class SongCardComponent {
     });
   }
 
-  openConversionDialog(file_id: number): void {
-    this.dialog.open(FileConverterComponent, {
-      width: '600px',
-      data: {
-        fileId: file_id,
+  onDeleteSong(songId: number) {
+    this.deleteService.deleteSong(this.song.song_id).subscribe(
+      () => {
+        this.statusMessageService.showStatusMessage('Song erfolgreich gelöscht');
+        window.location.reload();
+      },
+      (error) => {
+        this.statusMessageService.showStatusMessage('Fehler beim Löschen des Songs: ' + error, 'error');
       }
-    });
+    );
   }
 
 }
