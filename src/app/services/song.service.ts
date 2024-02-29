@@ -18,6 +18,7 @@ export class SongService {
   }
 
   getAudioSource(songId: number): Observable<Blob> {
+    console.log('Getting audio source for song with id:', songId);
     const url = `${this.apiUrl}/${songId}`;
     return this.http.get(url, {responseType: 'blob'});
   }

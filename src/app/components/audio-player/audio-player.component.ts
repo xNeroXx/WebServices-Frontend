@@ -11,7 +11,7 @@ export class AudioPlayerComponent {
     @Input() songId: number | undefined;
     @ViewChild('audioPlayer') audioPlayerRef!: ElementRef;
     @Input() isPlaying: boolean = false;
-    audioSrc: string | undefined;
+    @Input() audioSrc: string | undefined;
 
     /** currentTime: number = 0;
      duration: number = 0;
@@ -23,9 +23,6 @@ export class AudioPlayerComponent {
 
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['songId']) {
-            this.loadAudio();
-        }
         if (changes['isPlaying'] && !changes['isPlaying'].firstChange) {
             if (this.isPlaying) {
                 this.play();
@@ -35,15 +32,17 @@ export class AudioPlayerComponent {
         }
     }
 
+    /**
     loadAudio() {
         if (this.songId) {
-            this.songService.getAudioSource(this.songId).subscribe(blob => {
-                this.audioSrc = URL.createObjectURL(blob);
-                const audioPlayer = this.audioPlayerRef.nativeElement;
-                audioPlayer.load();
-            });
+          this.songService.getAudioSource(this.songId).subscribe(blob => {
+            const audioPlayer = this.audioPlayerRef.nativeElement;
+            this.audioSrc = URL.createObjectURL(blob);
+            audioPlayer.src = this.audioSrc;
+            audioPlayer.load();
+          });
         }
-    }
+    } **/
 
 
     /*
@@ -67,15 +66,24 @@ export class AudioPlayerComponent {
          }
     } */
 
-    play() {
-        this.audioPlayerRef.nativeElement.play();
-        this.isPlaying = true;
+    loadAudio(audioSrc: string) {
+      this.audioSrc = audioSrc;
+      const audioPlayer = this.audioPlayerRef.nativeElement;
+      audioPlayer.src = this.audioSrc;
+      audioPlayer.load();
     }
 
-    pause() {
-        this.audioPlayerRef.nativeElement.pause();
-        this.isPlaying = false;
-    }
+  play() {
+    const audioPlayer = this.audioPlayerRef.nativeElement;
+    audioPlayer.play();
+    this.isPlaying = true;
+  }
+
+  pause() {
+    const audioPlayer = this.audioPlayerRef.nativeElement;
+    audioPlayer.pause();
+    this.isPlaying = false;
+  }
 
     /**
      adjustVolume() {

@@ -31,7 +31,7 @@ export class SongCardComponent {
 
   togglePlay() {
     if (this.song) {
-      this.play.emit(this.song);
+      this.play.emit(this.song.song_id);
     }
   }
 
