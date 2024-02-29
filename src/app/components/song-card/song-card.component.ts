@@ -11,40 +11,34 @@ import {SongData} from "../../interfaces/song-data";
   styleUrls: ['./song-card.component.scss']
 })
 export class SongCardComponent {
-  @Input() song: any;
-  //@Input() audioFile: File | undefined;
+  @Input() song: SongData = {} as SongData;
   @Input() isSelected: boolean = false;
   @Input() isPlaying: boolean = false;
   @Output() play = new EventEmitter<number>();
+  @Output() pause = new EventEmitter<number>();
 
   constructor(private audioPlayerService: AudioPlayerService, private dialog: MatDialog) {
   }
 
-  /**
-  ngOnInit() {
-    this.audioPlayerService.isPlaying$.subscribe(isPlaying => {
-      this.audioPlayerService.currentSong$.subscribe(currentSong => {
-        this.isPlaying = isPlaying //&& this.song! === currentSong;
-      });
-    });
-  } */
+  togglePlay() {
+    if (this.isPlaying) {
+      this.pause.emit(); // Emit a pause event
+    } else {
+      this.play.emit(this.song.song_id); // Emit a play event with the song ID
+    }
+  }
 
+
+  /**
   togglePlay() {
     this.isPlaying = !this.isPlaying;
     if (this.isPlaying) {
       this.play.emit(this.song.song_id);
-      this.audioPlayerService.play(this.song.audioSrc);
     } else {
       this.audioPlayerService.pause();
     }
-  }
-
-  /**
-  togglePlay() {
-    if (this.song) {
-      this.play.emit(this.song.song_id);
-    }
   } */
+
 
   openMetadataEditDialog(): void {
     const dialogRef = this.dialog.open(MetadataEditComponent, {

@@ -3,21 +3,6 @@
     <audio #audioPlayer (pause)="isPlaying = false">
       <source [src]="audioSrc" type="audio/mpeg">
       Your browser does not support the audio element.
-    </audio> <!--
-    <div class="controls">
-      <button (click)="togglePlay()">
-        <mat-icon>{{ isPlaying ? 'pause_circle_outline' : 'play_circle_outline' }}</mat-icon>
-      </button>
-    </div>
-
-    <div class="progress-bar-container" (click)="seek($event)">
-      <div class="progress-bar" [style.width]="(currentTime / duration * 100 || 0) + '%'"></div>
-    </div>
-    <div class="volume-control">
-      <button mat-icon-button (click)="toggleMute()">
-        <mat-icon>{{ isMuted ? 'volume_off' : 'volume_up' }}</mat-icon>
-      </button>
-      <input class="volume-bar" type="range" min="0" max="100" step="1" [(ngModel)]="volume" (input)="adjustVolume()"/>
-    </div>-->
+    </audio>
   </div>
 </div>

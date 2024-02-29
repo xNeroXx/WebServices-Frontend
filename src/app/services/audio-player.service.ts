@@ -24,14 +24,14 @@ export class AudioPlayerService {
     this._currentSong.next(currentSong);
   }
 
-  play(song_id: number) {
-    /**
+  play(audioSrc: string) {
     if (this.audioPlayer) {
       this.audioPlayer.src = audioSrc;
       this.audioPlayer.play();
       this.setPlayingState(true, audioSrc);
-    } */
+    }
   }
+
 
   pause() {
     if (this.audioPlayer) {
@@ -44,7 +44,7 @@ export class AudioPlayerService {
   /*  if (this._isPlaying.value && this._currentSong.value) { // === audioSrc) {
       this.pause();
     } else { */
-      this.play(song_id);
+   //   this.play(song_id);
    // }
   }
 }

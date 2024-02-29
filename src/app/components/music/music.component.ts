@@ -10,15 +10,14 @@ import {AudioPlayerComponent} from "../audio-player/audio-player.component";
   styleUrls: ['./music.component.scss']
 })
 export class MusicComponent implements OnInit {
-  songs: any;
+  songs: SongData[] = [];
   selectedSong: SongData | null = null;
-  // @ViewChild('audioPlayer') audioPlayerRef!: ElementRef;
   @ViewChild(AudioPlayerComponent) audioPlayerComponent!: AudioPlayerComponent;
-  audioSrc: string | undefined;
- // @Input() song_id: number | undefined;
-  //audioUrl: string | undefined;
- // selectedAudioSrc: string | null = null;
-  isPlaying: boolean = false;
+  audioUrl: string | undefined;
+  currentPlayingSongId: number | null = null;
+  audioPlayer: HTMLAudioElement | null = null;
+  selectedSongId: number | null = null;
+  isPlaying = false;
 
   constructor(private songService: SongService) {
   }
@@ -41,34 +40,41 @@ export class MusicComponent implements OnInit {
 
   }
 
-  playSong(songId: number) {
-    this.songService.getAudioSource(songId).subscribe(
-      (blob: Blob) => {
-        const audioUrl = URL.createObjectURL(blob);
-        const audioPlayer = new Audio(audioUrl);
-        audioPlayer.play();
-      },
-      (error: any) => {
-        console.error('Fehler beim Abrufen der Audiodatei:', error);
+  playSong(songId: number): void {
+    if (this.selectedSongId === songId && this.isPlaying) {
+      // Wenn der angeklickte Song bereits abgespielt wird, pausiere ihn
+      this.isPlaying = false;
+      if (this.audioPlayer) {
+        this.audioPlayer.pause(); // Pausiere die Audiowiedergabe
       }
-    );
+      this.selectedSongId = null;
+    } else {
+      // Wenn ein neuer Song angeklickt wird, spiele ihn ab
+      if (this.audioPlayer) {
+        this.audioPlayer.pause(); // Pausiere die aktuelle Audiowiedergabe
+      }
+      this.songService.getAudioSource(songId).subscribe(
+        (blob: Blob) => {
+          const audioUrl = URL.createObjectURL(blob);
+          this.audioPlayer = new Audio(audioUrl);
+          this.isPlaying = true;
+          this.selectedSongId = songId;
+          this.audioPlayer.play();
+        },
+        (error: any) => {
+          console.error('Fehler beim Abrufen der Audiodatei:', error);
+        }
+      );
+    }
   }
+
+
+  pauseSong(): void {
+    if (this.audioPlayer) {
+      this.audioPlayer.pause(); // Pausiere die Audiowiedergabe
+      this.isPlaying = false; // Setze den Abspielstatus auf false
+    }
+  }
+
 }
-/**
- playSong(song: SongData) {
- this.selectedSong = song;
- this.isPlaying = true;
- } */
-/**
- playSong(song_id: number) {
- console.log('Playing song with id:', song_id);
- this.songService.getAudioSource(song_id).subscribe((response: Blob) => {
- this.audioUrl = URL.createObjectURL(response);
- });
- if (this.selectedAudioSrc === this.audioUrl) {
- this.isPlaying = !this.isPlaying;
- } else {
- // this.selectedAudioSrc = audioUrl;
- this.isPlaying = true;
- }
- } */
+
