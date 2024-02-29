@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+
 import { AudioPlayerService } from './audio-player.service';
 
 describe('AudioPlayerService', () => {
@@ -7,9 +8,9 @@ describe('AudioPlayerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AudioPlayerService);
-      });
+  });
 
-      it('should be created', () => {
-        expect(service).toBeTruthy();
-      });
-    });
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
