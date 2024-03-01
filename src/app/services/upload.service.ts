@@ -14,8 +14,7 @@ export class UploadService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post<any>(this.apiUrl, formData).pipe(
-    );
+    return this.http.post<any>(this.apiUrl, formData);
   }
 }
 
