@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {MetadataEditComponent} from "../metadata-edit/metadata-edit.component";
-import {FileConverterComponent} from "../file-converter/file-converter.component";
-import {SongData} from "../../interfaces/song-data";
-import {DeleteService} from "../../services/delete.service";
-import {StatusMessageService} from "../../services/status-message.service";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { MetadataEditComponent } from "../metadata-edit/metadata-edit.component";
+import { FileConverterComponent } from "../file-converter/file-converter.component";
+import { SongData } from "../../interfaces/song-data";
+import { DeleteService } from "../../services/delete.service";
+import { StatusMessageService } from "../../services/status-message.service";
 
 @Component({
   selector: 'app-song-card',
@@ -19,7 +19,6 @@ export class SongCardComponent {
   @Output() pause = new EventEmitter<number>();
   @Output() deleteSong: EventEmitter<number> = new EventEmitter<number>();
   deletingSong: boolean = false;
-
 
   constructor(private dialog: MatDialog,
               private deleteService: DeleteService,
@@ -44,19 +43,17 @@ export class SongCardComponent {
   }
 
   openMetadataEditDialog(): void {
-    if (this.song.artist && this.song.artist.length > 0) {
-      console.log('Song über metadata geöffnet: ', this.song.artist[0]);
+    if (this.song.artists && this.song.artists.length > 0) {
+      console.log('Song über metadata geöffnet: ', this.song.artists[0]);
     } else {
       console.log('Song hat keine Künstlerinformationen');
     }
     const dialogRef = this.dialog.open(MetadataEditComponent, {
       width: '600px',
-      data: {song: this.song}
+      data: { song: this.song }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
   onDeleteSong(songId: number) {
@@ -71,4 +68,10 @@ export class SongCardComponent {
     );
   }
 
+  getSelectedArtistNames(): string {
+    if (!this.song || !this.song.artists || this.song.artists.length === 0) {
+      return '';
+    }
+    return this.song.artists.map(artist => artist.name).join('; ');
+  }
 }
