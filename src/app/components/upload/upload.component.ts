@@ -11,7 +11,6 @@ export class UploadComponent {
   selectedFile: File | undefined;
   statusMessageService: StatusMessageService = inject(StatusMessageService);
 
-
   constructor(
     private uploadService: UploadService) {
 
@@ -36,7 +35,6 @@ export class UploadComponent {
             this.selectedFile = undefined;
             return this.statusMessageService.showStatusMessage('Die Datei konnte nicht verarbeitet werden, da sie keine ID3-Tags enthält.', 'error');
           } else {
-            console.log(error.status);
             this.selectedFile = undefined;
             return this.statusMessageService.showStatusMessage('Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es später nochmal.', 'error');
           }
