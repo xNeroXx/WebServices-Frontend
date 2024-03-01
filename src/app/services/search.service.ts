@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {SongData} from "../interfaces/song-data";
+import {createSongData, SongData} from "../interfaces/song-data";
 import {Router} from "@angular/router";
 import {StatusMessageService} from "./status-message.service";
 import {AutofillData, createAutofillData} from "../interfaces/autofill-data";
@@ -21,7 +21,7 @@ export class SearchService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  foo() {
+  getAutoCompleteData() {
     this.http.get<{[category: string]: string[]}>(this.searchURL + 'all_criteria').subscribe((data) => {
       this.categorySearchAutofillData = createAutofillData(data);
     })
@@ -48,9 +48,14 @@ export class SearchService {
   }
 
   private _searchForSongs(searchValue: string, searchCategory: string) {
-    this.http.post<SongData[]>(this.searchURL + 'combined', {[searchCategory]: searchValue}).subscribe( //TODO research errorhandling thats not deprecated
+    this.http.post<Partial<SongData>[]>(this.searchURL + 'combined', {[searchCategory]: searchValue}).subscribe( //TODO research errorhandling thats not deprecated
       (data) => {
-        this.searchResponse = data;
+        let tempList: SongData[] = [];
+        for (let i = 0; i < data.length; i++) {
+          tempList[i] = createSongData(data[i]);
+        }
+        console.log(tempList)
+        this.searchResponse = tempList;
         this.router.navigate(['/searchResults']);
       });
   }

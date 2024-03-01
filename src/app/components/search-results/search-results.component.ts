@@ -8,12 +8,27 @@ import {SongData} from "../../interfaces/song-data";
   styleUrl: './search-results.component.scss'
 })
 export class SearchResultsComponent implements OnInit{
-  private searchResults: SongData[] = []
+  protected searchResults: SongData[] = [];
+  protected selectedAudioSrc: string | null = null;
+  private isPlaying: boolean = false;
+
+  audioSrc = ''
+
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
     this.searchResults = this.searchService.searchResponse;
+  }
+
+  playSong(audioSrc: string) {
+    if (this.selectedAudioSrc === audioSrc) {
+      this.isPlaying = !this.isPlaying;
+      this.selectedAudioSrc = null;
+    } else {
+      this.selectedAudioSrc = audioSrc;
+      this.isPlaying = true;
+    }
   }
 
 }
