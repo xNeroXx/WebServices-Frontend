@@ -15,9 +15,5 @@
     <button (click)="convert()" [disabled]="loading" color="primary" mat-button>Konvertieren</button>
   </div>
 
-  <div *ngIf="loading" class="overlay">
-    <div class="loading-screen">
-      <mat-spinner></mat-spinner>
-    </div>
-  </div>
+  <app-loading-screen *ngIf="loading"></app-loading-screen>
 </div>

@@ -19,6 +19,7 @@ export class SongCardComponent {
   @Output() pause = new EventEmitter<number>();
   @Output() deleteSong: EventEmitter<number> = new EventEmitter<number>();
   deletingSong: boolean = false;
+  loading = false;
 
   constructor(private dialog: MatDialog,
               private deleteService: DeleteService,
@@ -57,6 +58,7 @@ export class SongCardComponent {
   }
 
   onDeleteSong(songId: number) {
+    this.loading = true;
     this.deleteService.deleteSong(songId).subscribe(
       () => {
         this.statusMessageService.showStatusMessage('Song erfolgreich gelöscht');
