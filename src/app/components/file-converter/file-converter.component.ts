@@ -1,7 +1,8 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, inject, Inject, Input} from '@angular/core';
 import {DialogService} from '../../services/dialog.service';
 import {FileConverterService} from '../../services/file-converter.service';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {StatusMessageService} from "../../services/status-message.service";
 
 @Component({
   selector: 'app-file-converter',
@@ -14,6 +15,8 @@ export class FileConverterComponent {
   availableFormats: string[] = ['ogg', 'wav', 'flac'];
   selectedFormat: string = '';
   fileId: number;
+  statusMessageService: StatusMessageService = inject(StatusMessageService);
+
 
   constructor(
     private dialogService: DialogService,
@@ -28,7 +31,7 @@ export class FileConverterComponent {
 
   convert(): void {
     if (!this.selectedFormat) {
-      console.error('Bitte wählen Sie das Zielformat aus.');
+      this.statusMessageService.showStatusMessage('Bitte wählen Sie die Zielkonvertierung aus.', 'error');
       return;
     }
     this.loading = true;
@@ -46,8 +49,8 @@ export class FileConverterComponent {
           this.loading = false;
           this.closeDialog();
         },
-        error => {
-          console.error('Fehler bei der Konvertierung:', error);
+        () => {
+          return this.statusMessageService.showStatusMessage('Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später nochmal.', 'error');
         }
       );
   }
