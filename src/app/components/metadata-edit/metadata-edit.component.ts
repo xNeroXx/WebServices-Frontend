@@ -9,6 +9,7 @@ import {MetadataService} from '../../services/metadata.service';
 })
 export class MetadataEditComponent {
   selectedArtistNames: string;
+  loading = false;
 
   constructor(
     public dialogRef: MatDialogRef<MetadataEditComponent>,
@@ -26,7 +27,7 @@ export class MetadataEditComponent {
     const artistNames = this.selectedArtistNames.split(';').map(name => name.trim());
 
     this.data.song.artists = artistNames.map(name => ({name: name}));
-
+    this.loading = true;
     this.metadataService.changeMetadata(this.data.song).subscribe(() => {
       this.dialogRef.close();
     }, (error: any) => {
