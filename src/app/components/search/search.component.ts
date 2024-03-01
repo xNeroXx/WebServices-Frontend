@@ -62,4 +62,9 @@ export class SearchComponent implements OnInit {
     const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
     return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
   }
+
+  get filteredAutoCompleteData(): string[] {
+    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
+    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
+  }
 }
