@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'searchResults',
         component: SearchResultsComponent
+      },
+      {
+        path: 'music',
+        component: MusicComponent
       }
     ]
   },
