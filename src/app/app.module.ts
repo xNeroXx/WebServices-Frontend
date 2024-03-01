@@ -35,6 +35,7 @@ import {MatSelect} from "@angular/material/select";
 import {MusicComponent} from "./components/music/music.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -81,6 +82,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     NgOptimizedImage,
     MatProgressSpinner,
     MatFabButton,
+    MatTooltip,
 
 
   ],
