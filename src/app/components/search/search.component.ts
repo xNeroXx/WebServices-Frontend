@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {debounceTime, Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AsyncPipe} from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {UploadComponent} from "../upload/upload.component";
 import {SearchService} from "../../services/search.service";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
@@ -40,9 +37,6 @@ export interface CategoryOption {
 export class SearchComponent implements OnInit {
   searchCategory: string = 'title';
   searchValue: string = '';
-  autoCompleteData: {[category: string]: string[]} = {};
-  //autoCompleteData: SearchOption[] = [];
-  //filteredAutoCompleteData: Observable<string[]> | undefined;
   searchForm = new FormGroup({
     searchValue: new FormControl(''),
     searchCategory: new FormControl('title')
@@ -51,7 +45,6 @@ export class SearchComponent implements OnInit {
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    //this.searchService.getAutoCompleteData(); TODO remove Comment
     this.loadAutoCompleteData()
   }
 
@@ -69,8 +62,6 @@ export class SearchComponent implements OnInit {
 
   get filteredAutoCompleteData(): string[] {
     const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
-
-    //return this.autoCompleteData[this.searchForm.value.searchCategory ?? 'title'].filter(option => option.toLowerCase().includes(filterValue));
     return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
   }
 }
