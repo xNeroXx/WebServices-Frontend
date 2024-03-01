@@ -1,17 +1,14 @@
 <input #fileInput (change)="onFileSelected($event)" accept="audio/mpeg3" style="display: none" type="file"/>
-<button (click)="fileInput.click()" color="primary" extended mat-fab>
+<button (click)="fileInput.click()" color="primary" extended mat-fab style="margin-bottom: 10px;">
   <mat-icon>upload</mat-icon>
   Datei auswählen
 </button>
 
-<button (click)="onUpload()" *ngIf="selectedFile" color="primary" mat-button>Upload starten</button>
+<button (click)="onUpload()" *ngIf="selectedFile" color="primary" extended mat-fab style="margin-top: 10px;">
+  <mat-icon>cloud_upload</mat-icon>
+  Upload starten
+</button>
 
-<div *ngIf="selectedFile">
+<div *ngIf="selectedFile" style="margin-top: 10px;">
   <p>Hochzuladende Datei: {{ selectedFile.name }}</p>
 </div>
-
-<div *ngIf="errorMessage" >
-  {{ errorMessage }}
-</div>
-
-

@@ -1,6 +1,6 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { UploadService } from '../../services/upload.service';
-import { isPlatformBrowser } from "@angular/common";
+import {Component, inject} from '@angular/core';
+import {UploadService} from '../../services/upload.service';
+import {StatusMessageService} from "../../services/status-message.service";
 
 @Component({
   selector: 'app-upload',
@@ -9,17 +9,12 @@ import { isPlatformBrowser } from "@angular/common";
 })
 export class UploadComponent {
   selectedFile: File | undefined;
-  accessToken: string | null = null;
-  errorMessage: string | null = null;
+  statusMessageService: StatusMessageService = inject(StatusMessageService);
 
 
   constructor(
-    private uploadService: UploadService,
-    @Inject(PLATFORM_ID) private platformId: any
-  ) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.accessToken = localStorage.getItem('access_token');
-    }
+    private uploadService: UploadService) {
+
   }
 
   onFileSelected(event: any) {
@@ -27,17 +22,25 @@ export class UploadComponent {
   }
 
   onUpload() {
-    if (this.selectedFile && this.accessToken) {
+    if (this.selectedFile) {
       this.uploadService.uploadFile(this.selectedFile).subscribe(
-        (response: any) => {
-          console.log('Upload successful:', response);
-          this.errorMessage = null;
+        () => {
+          this.statusMessageService.showStatusMessage('Die Datei wurde erfolgreich hochgeladen.', 'success');
+          this.selectedFile = undefined;
         },
         (error: any) => {
-          console.error('Upload failed:', error);
-          this.errorMessage = error;
-        }
-      );
+          if (error.status === 409) {
+            this.selectedFile = undefined;
+            return this.statusMessageService.showStatusMessage('Die Datei existiert bereits.', 'error');
+          } else if (error.status === 422) {
+            this.selectedFile = undefined;
+            return this.statusMessageService.showStatusMessage('Die Datei konnte nicht verarbeitet werden, da sie keine ID3-Tags enthält.', 'error');
+          } else {
+            console.log(error.status);
+            this.selectedFile = undefined;
+            return this.statusMessageService.showStatusMessage('Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es später nochmal.', 'error');
+          }
+        })
     }
   }
 }
