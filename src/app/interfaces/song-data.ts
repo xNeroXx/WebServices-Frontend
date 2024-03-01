@@ -9,7 +9,7 @@ export interface SongData {
   artists: Artist[]
 }
 
-export function createAutofillData(data: Partial<SongData> = {}): SongData {
+export function createSongData(data: Partial<SongData> = {}): SongData {
   return {
     'file_id': data.file_id || 0,
     'duration': data.duration || 0,
