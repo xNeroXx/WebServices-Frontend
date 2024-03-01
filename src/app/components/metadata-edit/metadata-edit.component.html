@@ -27,16 +27,18 @@
         <input [(ngModel)]="data.song.album" matInput placeholder="Album">
       </mat-form-field>
     </div>
-    <div class="custom-input-field">
+    <div class="custom-input-field" [class.error]="dateInput.invalid && dateInput.touched">
       <mat-form-field appearance="outline" class="input-field">
         <mat-label>Erscheinungsjahr</mat-label>
-        <input [(ngModel)]="data.song.date" matInput placeholder="Erscheinungsjahr">
+        <input #dateInput="ngModel" [(ngModel)]="data.song.date" matInput placeholder="Erscheinungsjahr" pattern="[0-9]*">
+        <mat-error *ngIf="dateInput.invalid && dateInput.touched"></mat-error>
       </mat-form-field>
     </div>
+
   </div>
   <div class="custom-dialog-footer">
     <button (click)="cancel()" mat-button>Abbrechen</button>
-    <button (click)="save()" color="primary" mat-button>Speichern</button>
+    <button (click)="save()" color="primary" mat-button [disabled]="dateInput.invalid && dateInput.touched">Speichern</button>
   </div>
   <app-loading-screen *ngIf="loading"></app-loading-screen>
 </div>
