@@ -12,7 +12,7 @@
     <div class="custom-input-field">
       <mat-form-field appearance="outline" class="input-field">
         <mat-label>Artist</mat-label>
-        <input [(ngModel)]="selectedArtistName" matInput placeholder="Enter artist">
+        <input [(ngModel)]="selectedArtistNames" matInput placeholder="Enter artist" [matTooltip]="'Enter multiple artists separated by semicolon (;)'">
       </mat-form-field>
     </div>
     <div class="custom-input-field">
