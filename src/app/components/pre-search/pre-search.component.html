@@ -1,0 +1,34 @@
+<div class="searchbar-container">
+  <app-search></app-search>
+  <mat-divider class="searchbar-divider"></mat-divider>
+</div>
+<div class="presearch-content">
+  @if (filteredOptions.length == 0) {
+    <div class="no-result-center">
+      <div class="no-result-message">
+        <span class="lead no-result-span">Für diese Suche gab es keine Ergebnisse. <br> Ändern Sie die Anfrage und versuchen Sie es erneut!</span>
+      </div>
+    </div>
+  } @else {
+    <div class="presearch-content-format">
+      <div class="presearch-scroll">
+        <div class="result-amount">
+          <span>{{this.searchService.categorySearchResults.length + " Ergebniss(e) für Suchbegriff: '" + this.searchService.searchValue + "'"}}</span>
+        </div>
+        <div matSubheader class="presearch-header">
+          <span class="text-decoration-underline">Wählen Sie eine Option aus der Liste aus</span>
+        </div>
+        <div class="option-container">
+          @for (option of filteredOptions; track $index) {
+            @if ($index != 0) {
+              <mat-divider></mat-divider>
+            }
+            <div class="option" (click)="handleOptionSelection(option)">
+              <span class="lead option-text">{{option}}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

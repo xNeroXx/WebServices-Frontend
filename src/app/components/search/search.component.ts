@@ -1,15 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AsyncPipe} from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {UploadComponent} from "../upload/upload.component";
+import {SearchService} from "../../services/search.service";
+import {MatIcon} from "@angular/material/icon";
+import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
+import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 
-export interface User {
-  name: string;
+export interface CategoryOption {
+  value: string,
+  displayValue: string
 }
 
 @Component({
@@ -24,31 +26,42 @@ export interface User {
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    UploadComponent,
+    MatIcon,
+    MatButton,
+    MatIconButton,
+    MatMiniFabButton,
+    MatChipListbox,
+    MatChipOption,
   ],
 })
 export class SearchComponent implements OnInit {
-  myControl = new FormControl<string | User>('');
-  options: User[] = [{name: 'Mary'}, {name: 'Shelley'}, {name: 'Igor'}];
-  filteredOptions: Observable<User[]> | undefined;
+  searchCategory: string = 'title';
+  searchValue: string = '';
+  searchForm = new FormGroup({
+    searchValue: new FormControl(''),
+    searchCategory: new FormControl('title')
+  });
+
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
-    );
+    this.loadAutoCompleteData()
   }
 
-  displayFn(user: User): string {
-    return user && user.name ? user.name : '';
+  onSearchSubmit() {
+    this.searchForm.value.searchValue =  (document.getElementById('searchbar') as HTMLInputElement).value
+    this.searchService.categorySearchResults = this.filteredAutoCompleteData;
+    this.searchValue = this.searchForm.value.searchValue ?? '';
+    this.searchCategory = this.searchForm.value.searchCategory ?? 'title';
+    this.searchService.search(this.searchValue, this.searchCategory);
   }
 
-  private _filter(name: string): User[] {
-    const filterValue = name.toLowerCase();
+  loadAutoCompleteData() {
+    this.searchService.getAutoCompleteData();
+  }
 
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+  get filteredAutoCompleteData(): string[] {
+    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
+    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
   }
 }

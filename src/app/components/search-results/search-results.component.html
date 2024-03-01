@@ -1,0 +1,17 @@
+<div class="searchbar-container">
+  <app-search></app-search>
+  <mat-divider class="searchbar-divider"></mat-divider>
+</div>
+<div class="center-horizontally">
+  <div class="song-card-container">
+    @for (song of searchResults; track $index) {
+      <app-song-card class="song-card"
+                     [song]="song"
+                     [isPlaying]="selectedAudioSrc === audioSrc"
+                     (play)="playSong(audioSrc)"
+      ></app-song-card>
+    }
+  </div>
+</div>
+
+
