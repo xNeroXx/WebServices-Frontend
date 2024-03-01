@@ -58,11 +58,11 @@ export class SongCardComponent {
   }
 
   onDeleteSong(songId: number) {
-    this.loading = true;
     this.deleteService.deleteSong(songId).subscribe(
       () => {
-        this.statusMessageService.showStatusMessage('Song erfolgreich gelöscht');
+        this.loading = true;
         window.location.reload();
+        this.statusMessageService.showStatusMessage('Song erfolgreich gelöscht');
       },
       (error) => {
         this.statusMessageService.showStatusMessage('Fehler beim Löschen des Songs: ' + error, 'error');
