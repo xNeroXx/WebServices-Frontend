@@ -8,7 +8,7 @@ export interface SongData {
   duration: number
 }
 
-export function createAutofillData(data: Partial<SongData> = {}): SongData {
+export function createSongData(data: Partial<SongData> = {}): SongData {
   return {
     'id': data.id || 0,
     'title': data.title || '',
