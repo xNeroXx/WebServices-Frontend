@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {TokenObject} from "../interfaces/token-object";
 import {SignupData} from "../interfaces/signup-data";
 import {CurrentUserData} from "../interfaces/current-user-data";
-import * as http from "http";
+
 
 @Injectable({
   providedIn: 'root'

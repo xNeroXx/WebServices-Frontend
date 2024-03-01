@@ -8,6 +8,7 @@ export interface SignupData {
     street: string,
     house_number: number,
     postal_code: number,
+    city: string,
     country: string
   }
 }
