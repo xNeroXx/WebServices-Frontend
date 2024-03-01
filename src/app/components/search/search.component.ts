@@ -55,6 +55,7 @@ export class SearchComponent implements OnInit {
 
   loadAutoCompleteData() {
     this.searchService.getAutoCompleteData();
+    this.searchService.getAutoCompleteData();
   }
 
   get filteredAutoCompleteData(): string[] {
