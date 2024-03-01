@@ -12,7 +12,10 @@
   </div>
   <div class="custom-dialog-footer">
     <button (click)="cancel()" mat-button>Abbrechen</button>
-    <button (click)="convert()" [disabled]="loading" color="primary" mat-button>Konvertieren</button>
+    <button (click)="convert()" [disabled]="loading" color="primary" mat-button>
+      <mat-icon>download</mat-icon>
+      Konvertieren
+    </button>
   </div>
 
   <app-loading-screen *ngIf="loading"></app-loading-screen>
