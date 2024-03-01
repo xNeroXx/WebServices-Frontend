@@ -1,6 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component, inject, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {MetadataService} from '../../services/metadata.service';
+import {StatusMessageService} from "../../services/status-message.service";
 
 @Component({
   selector: 'app-metadata-edit',
@@ -10,6 +11,7 @@ import {MetadataService} from '../../services/metadata.service';
 export class MetadataEditComponent {
   selectedArtistNames: string;
   loading = false;
+  statusMessageService: StatusMessageService = inject(StatusMessageService);
 
   constructor(
     public dialogRef: MatDialogRef<MetadataEditComponent>,
@@ -27,11 +29,18 @@ export class MetadataEditComponent {
     const artistNames = this.selectedArtistNames.split(';').map(name => name.trim());
 
     this.data.song.artists = artistNames.map(name => ({name: name}));
-    this.loading = true;
     this.metadataService.changeMetadata(this.data.song).subscribe(() => {
+      this.loading = true;
+      this.statusMessageService.showStatusMessage('Daten erfolgreich aktualisiert', 'success');
       this.dialogRef.close();
     }, (error: any) => {
-      console.error('Error updating metadata:', error);
+      this.loading = false;
+      if(error.status === 422) {
+        return this.statusMessageService.showStatusMessage('Bitte geben Sie valide Werte ein.', 'error');
+      }
+       else {
+        return this.statusMessageService.showStatusMessage('Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später nochmal.', 'error');
+      }
     });
   }
 }
