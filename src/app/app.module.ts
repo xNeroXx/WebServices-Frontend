@@ -36,6 +36,7 @@ import {MusicComponent} from "./components/music/music.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MatTooltip} from "@angular/material/tooltip";
+import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -52,7 +53,8 @@ import {MatTooltip} from "@angular/material/tooltip";
     MetadataEditComponent,
     FileConverterComponent,
     MusicComponent,
-    UploadComponent
+    UploadComponent,
+    LoadingScreenComponent
 
   ],
   imports: [
