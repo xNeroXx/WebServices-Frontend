@@ -4,6 +4,9 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -20,33 +23,43 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+  }
 
-    .song-title {
-      margin: 0;
-      font-size: 18px;
-    }
+  .song-title {
+    margin: 0;
+    font-size: 18px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .song-artist {
-      margin-top: 5px;
-      font-size: 14px;
-    }
 
-    .button-group {
-      margin-top: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .song-artist {
+    margin-top: 5px;
+    font-size: 14px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    button {
-      background-color: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
-    }
 
-    button:hover {
-      color: #3f51b5;
-    }
+  .button-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: auto;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: #3f51b5;
   }
 }
