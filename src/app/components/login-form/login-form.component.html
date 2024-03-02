@@ -4,22 +4,21 @@
       <div>
         <div class="align-horizontal"><h1 class="login-header">Login</h1></div>
         <form [formGroup]="loginForm">
-          <mat-form-field appearance="outline" class="form-field-full-width" color="primary">
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
             <mat-label>E-Mail</mat-label>
             <input formControlName="email" matInput required>
             @if (loginForm.get('email')?.invalid) {
               <mat-error>{{ getErrorMessage(0) }}</mat-error>
             }
           </mat-form-field>
-          <mat-form-field appearance="outline" class="form-field-full-width" color="primary">
+          <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
             <mat-label>Passwort</mat-label>
-            <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput required>
-            <button (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'" [attr.aria-pressed]="hide" mat-icon-button
-                    matSuffix>
-              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
             @if (loginForm.get('password')?.invalid) {
-              <mat-error>{{ getErrorMessage(1) }}</mat-error>
+              <mat-error>{{getErrorMessage(1)}}</mat-error>
             }
           </mat-form-field>
           <button (click)="submit()" [disabled]="!loginForm.valid" color="primary" mat-stroked-button type="submit">

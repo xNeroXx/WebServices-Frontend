@@ -7,14 +7,28 @@ import {SongData} from "../../interfaces/song-data";
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss'
 })
-export class SearchResultsComponent implements OnInit {
-  private searchResults: SongData[] = []
+export class SearchResultsComponent implements OnInit{
+  protected searchResults: SongData[] = [];
+  protected selectedAudioSrc: string | null = null;
+  private isPlaying: boolean = false;
 
-  constructor(private searchService: SearchService) {
-  }
+  audioSrc = ''
+
+
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
     this.searchResults = this.searchService.searchResponse;
+  }
+
+  playSong(audioSrc: string) {
+    if (this.selectedAudioSrc === audioSrc) {
+      this.isPlaying = !this.isPlaying;
+      this.selectedAudioSrc = null;
+    } else {
+      this.selectedAudioSrc = audioSrc;
+      this.isPlaying = true;
+    }
   }
 
 }

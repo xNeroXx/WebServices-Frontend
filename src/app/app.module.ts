@@ -27,10 +27,13 @@ import {MatInput} from "@angular/material/input";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 import {PreSearchComponent} from './components/pre-search/pre-search.component';
 import {MatListSubheaderCssMatStyler} from "@angular/material/list";
+import {MatGridList, MatGridTile} from "@angular/material/grid-list";
+import { SongCardComponent } from './components/song-card/song-card.component';
+import { FileConverterComponent } from './components/file-converter/file-converter.component';
+import {MatProgressBar} from "@angular/material/progress-bar";
 import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
-import {SongCardComponent} from "./components/song-card/song-card.component";
-import {MetadataEditComponent} from "./components/metadata-edit/metadata-edit.component";
-import {FileConverterComponent} from "./components/file-converter/file-converter.component";
+import { MetadataEditComponent } from './components/metadata-edit/metadata-edit.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelect} from "@angular/material/select";
 import {MusicComponent} from "./components/music/music.component";
 import {NgOptimizedImage} from "@angular/common";
@@ -49,18 +52,19 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     FooterComponent,
     SearchResultsComponent,
     PreSearchComponent,
+    MusicComponent,
     SongCardComponent,
     MetadataEditComponent,
     FileConverterComponent,
-    MusicComponent,
     UploadComponent,
-    LoadingScreenComponent
-
+    LoadingScreenComponent,
+    MetadataEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginFormComponent,
+    SignupComponent,
     MatFormField,
     MatAutocomplete,
     MatOption,
@@ -79,14 +83,11 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     MatChipListbox,
     MatChipOption,
     MatListSubheaderCssMatStyler,
-    SignupComponent,
     MatSelect,
     NgOptimizedImage,
     MatProgressSpinner,
     MatFabButton,
     MatTooltip,
-
-
   ],
   providers: [
     provideClientHydration(),
@@ -98,5 +99,4 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
