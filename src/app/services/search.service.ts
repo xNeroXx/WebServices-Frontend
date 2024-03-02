@@ -68,9 +68,9 @@ export class SearchService {
     let tempList: string[] = [];
     switch (category) {
       default: {tempList = this.categorySearchAutofillData.title ?? []; break}
-      case 'interpret': {tempList = this.categorySearchAutofillData.interpret ?? []; break}
-      case 'album': {tempList = this.categorySearchAutofillData.album ?? []; break}
-      case 'genre': {tempList = this.categorySearchAutofillData.genre ?? []; break}
+      case 'artist_name': {tempList = this.categorySearchAutofillData.artist_name ?? []; break}
+      case 'album_name': {tempList = this.categorySearchAutofillData.album_name ?? []; break}
+      case 'genre_name': {tempList = this.categorySearchAutofillData.genre_name ?? []; break}
     }
     this.filteredCategorySearchAutofillData = tempList.filter(option => option.toLowerCase().includes(filterValue));
     return this.filteredCategorySearchAutofillData;
