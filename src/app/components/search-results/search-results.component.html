@@ -5,10 +5,12 @@
 <div class="center-horizontally">
   <div class="song-card-container">
     @for (song of searchResults; track $index) {
-      <app-song-card class="song-card"
-                     [song]="song"
-                     [isPlaying]="selectedAudioSrc === audioSrc"
-                     (play)="playSong(audioSrc)"
+      <app-song-card
+        (pause)="pauseSong()"
+        (play)="playSong(song.song_id)"
+        [isPlaying]="selectedSongId === song.song_id && isPlaying"
+        [isSelected]="selectedSong === song"
+        [song]="song"
       ></app-song-card>
     }
   </div>
