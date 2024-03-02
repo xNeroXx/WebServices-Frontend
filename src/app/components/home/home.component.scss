@@ -1,11 +1,13 @@
 .home {
   position: relative;
   text-align: center;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .home img {
   width: 100%;
-  height: 100vh;
+  height: auto;
   object-position: center;
   object-fit: cover;
   filter: brightness(20%);
@@ -31,7 +33,8 @@
 
 .search-upload-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px
 }
 
@@ -42,8 +45,16 @@
   margin-left: 10px;
 }
 
+#home-divider{
+  border-top-width: 2px;
+  border-top-color: rgba(255, 255, 255, 0.61);
+  width: 420px;
+  height: 10px;
+  margin-bottom: 10px;
+}
+
 .app-upload {
-  max-width: 200px;
+  max-width: 230px;
   margin-right: 10px;
   margin-left: 10px;
 }

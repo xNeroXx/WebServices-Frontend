@@ -1,0 +1,29 @@
+.searchbar-container {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchbar-divider {
+  width: 90%;
+}
+
+.center-horizontally {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.song-card-container {
+  max-width: 80%;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.song-card-container .song-card {
+  margin: 0 10px;
+}

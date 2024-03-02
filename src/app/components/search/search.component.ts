@@ -9,10 +9,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 
-export interface CategoryOption {
-  value: string,
-  displayValue: string
-}
+
 
 @Component({
   selector: 'app-search',
@@ -37,26 +34,14 @@ export interface CategoryOption {
 export class SearchComponent implements OnInit {
   searchCategory: string = 'title';
   searchValue: string = '';
-  autoCompleteData: { [category: string]: string[] } = {};
-  //autoCompleteData: SearchOption[] = [];
-  //filteredAutoCompleteData: Observable<string[]> | undefined;
   searchForm = new FormGroup({
     searchValue: new FormControl(''),
     searchCategory: new FormControl('title')
   });
 
-  constructor(private searchService: SearchService) {
-  }
-
-  get filteredAutoCompleteData(): string[] {
-    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
-
-    //return this.autoCompleteData[this.searchForm.value.searchCategory ?? 'title'].filter(option => option.toLowerCase().includes(filterValue));
-    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
-  }
+  constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    //this.searchService.getAutoCompleteData(); TODO remove Comment
     this.loadAutoCompleteData()
   }
 
@@ -69,6 +54,12 @@ export class SearchComponent implements OnInit {
   }
 
   loadAutoCompleteData() {
-    this.searchService.foo();
+    this.searchService.getAutoCompleteData();
   }
+
+  get filteredAutoCompleteData(): string[] {
+    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
+    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
+  }
+
 }

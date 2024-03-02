@@ -27,14 +27,6 @@ export class LoginFormComponent {
   constructor(private userService: UserService) {
   }
 
-  /*getErrorMessage() {
-    if (this.loginForm.get('email')?.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.loginForm.get('email')?.hasError('email') ? 'Not a valid email' : '';
-  }*/
-
   getErrorMessage(field: number) {
     if (field == 0) {
       if (this.loginForm.get('email')?.hasError('required')) {
@@ -51,7 +43,6 @@ export class LoginFormComponent {
     }
     return '';
   }
-
 
   submit() {
     console.log(this.loginForm.get('email')?.value)

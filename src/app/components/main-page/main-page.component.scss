@@ -4,6 +4,15 @@
   display: flex;
 }
 
-p {
-  margin: 0; //only for dummy p tag
+app-header {
+  height: 64px;
+}
+
+app-footer {
+  height: 60px;
+}
+
+.main-page-router {
+  height: calc(100% - 124px);
+  overflow-y: auto;
 }

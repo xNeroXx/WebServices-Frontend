@@ -13,5 +13,3 @@ export const authHeaderInterceptor: HttpInterceptorFn = (req, next) => {
   }
   return next(req);
 };
-
-
