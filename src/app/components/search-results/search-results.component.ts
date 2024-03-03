@@ -9,7 +9,6 @@ import {SongService} from "../../services/song.service";
   styleUrl: './search-results.component.scss'
 })
 export class SearchResultsComponent implements OnInit{
-  protected searchResults: SongData[] = [];
 
   songs: SongData[] = [];
   selectedSong: SongData | null = null;
@@ -21,9 +20,7 @@ export class SearchResultsComponent implements OnInit{
 
   constructor(private searchService: SearchService, private songService: SongService) {}
 
-  ngOnInit() {
-    this.searchResults = this.searchService.searchResponse;
-  }
+  ngOnInit() {}
 
   playSong(songId: number): void {
     if (this.selectedSongId === songId && this.isPlaying) {
@@ -56,6 +53,10 @@ export class SearchResultsComponent implements OnInit{
       this.audioPlayer.pause();
       this.isPlaying = false;
     }
+  }
+
+  get searchResults() {
+    return this.searchService.searchResponse;
   }
 
 }
