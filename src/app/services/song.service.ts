@@ -25,7 +25,6 @@ export class SongService {
   }
 
   private handleError(error: any): Observable<never> {
-    console.error('Fehler aufgetreten:', error);
     throw error;
   }
 }

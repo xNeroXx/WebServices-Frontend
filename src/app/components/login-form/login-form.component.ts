@@ -45,8 +45,6 @@ export class LoginFormComponent {
   }
 
   submit() {
-    console.log(this.loginForm.get('email')?.value)
-    console.log(this.loginForm.get('password')?.value)
     this.userService.login(this.loginForm.value.email ?? '', this.loginForm.value.password ?? '')
   }
 

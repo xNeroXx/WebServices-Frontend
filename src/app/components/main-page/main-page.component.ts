@@ -17,7 +17,6 @@ export class MainPageComponent implements OnInit, OnDestroy{
     this.intervalRefresh = interval(30 * 58 * 1000)
       .subscribe(() => {
         if(this.userService.getLoggedIn()){
-          console.log('Interval works')
           this.refreshService.refreshToken();
         }
       })

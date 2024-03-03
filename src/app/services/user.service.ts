@@ -59,7 +59,6 @@ export class UserService {
         } else {
           this.statusMessageService.showStatusMessage('Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!', 'error');
         }
-        //console.error("API Error:", error);
         return throwError(() => 'Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!');
       })
     );
@@ -68,7 +67,6 @@ export class UserService {
   private _signupApiCall(data: SignupData): Observable<CurrentUserData> {
     return this.http.post<CurrentUserData>(this.loginApiURL + 'signup', data).pipe(
       catchError((error) => {
-        console.error('API Error:', error);
         if (error.status == 409) {
           this.statusMessageService.showStatusMessage('Diese Email existiert bereits', 'error')
         } else {
