@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {UploadService} from '../../services/upload.service';
 import {StatusMessageService} from "../../services/status-message.service";
+import {SearchService} from "../../services/search.service";
 
 @Component({
   selector: 'app-upload',
@@ -12,7 +13,7 @@ export class UploadComponent {
   statusMessageService: StatusMessageService = inject(StatusMessageService);
 
   constructor(
-    private uploadService: UploadService) {
+    private uploadService: UploadService, private searchService: SearchService) {
 
   }
 
@@ -26,6 +27,7 @@ export class UploadComponent {
         () => {
           this.statusMessageService.showStatusMessage('Die Datei wurde erfolgreich hochgeladen.', 'success');
           this.selectedFile = undefined;
+          this.searchService.getAutoCompleteData();
         },
         (error: any) => {
           if (error.status === 409) {
