@@ -7,7 +7,7 @@ export interface SignupData {
   address: {
     street: string,
     house_number: number,
-    postal_code: number,
+    postal_code: string,
     city: string,
     country: string
   }
