@@ -7,7 +7,6 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
 import {provideHttpClient, withFetch, withInterceptors} from "@angular/common/http";
 import {LoginFormComponent} from './components/login-form/login-form.component';
 import {MainPageComponent} from "./components/main-page/main-page.component";
-import {DummyComponent} from "./components/dummy/dummy.component";
 import {HomeComponent} from './components/home/home.component';
 import {SearchComponent} from './components/search/search.component';
 import {MatFormField, MatLabel} from "@angular/material/form-field";
@@ -27,13 +26,10 @@ import {MatInput} from "@angular/material/input";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 import {PreSearchComponent} from './components/pre-search/pre-search.component';
 import {MatListSubheaderCssMatStyler} from "@angular/material/list";
-import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import { SongCardComponent } from './components/song-card/song-card.component';
 import { FileConverterComponent } from './components/file-converter/file-converter.component';
-import {MatProgressBar} from "@angular/material/progress-bar";
 import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
 import { MetadataEditComponent } from './components/metadata-edit/metadata-edit.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelect} from "@angular/material/select";
 import {MusicComponent} from "./components/music/music.component";
 import {NgOptimizedImage} from "@angular/common";
@@ -46,7 +42,6 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
   declarations: [
     AppComponent,
     MainPageComponent,
-    DummyComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
