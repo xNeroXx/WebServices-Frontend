@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {TokenObject} from "../interfaces/token-object";
 import {SignupData} from "../interfaces/signup-data";
 import {CurrentUserData} from "../interfaces/current-user-data";
+import {SignupResponse} from "../interfaces/signup-response";
 
 
 @Injectable({
@@ -15,6 +16,7 @@ export class UserService {
   private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private loginApiURL = "http://127.0.0.1:8000/api/registration/auth/";
   private getCurrentUserURL = 'http://127.0.0.1:8000/api/user/me';
+  private currentUsername: string = '';
   private currentUser: CurrentUserData = {
     "id": 0,
     "email": "user@example.com",
@@ -27,7 +29,6 @@ export class UserService {
       "postal_code": 0,
       "city": "string",
       "country": "string",
-      "state": "string"
     }
   }
 
@@ -37,7 +38,6 @@ export class UserService {
     let userData = {'email': userEmail, 'password': userPassword};
 
     this._loginApiCall(userData).subscribe(data => {
-      console.log(data);
       localStorage.setItem("access_token", data.token.access_token);
       localStorage.setItem("refresh_token", data.token.refresh_token);
       this.loggedIn$.next(true);
@@ -46,7 +46,8 @@ export class UserService {
   }
 
   signup(data: SignupData) {
-    this._signupApiCall(data).subscribe(() => {
+    this._signupApiCall(data).subscribe((userdata) => {
+      this.currentUsername = userdata.username;
       this.login(data.email, data.password);
     })
   }
@@ -64,8 +65,8 @@ export class UserService {
     );
   }
 
-  private _signupApiCall(data: SignupData): Observable<CurrentUserData> {
-    return this.http.post<CurrentUserData>(this.loginApiURL + 'signup', data).pipe(
+  private _signupApiCall(data: SignupData): Observable<SignupResponse> {
+    return this.http.post<SignupResponse>(this.loginApiURL + 'signup', data).pipe(
       catchError((error) => {
         if (error.status == 409) {
           this.statusMessageService.showStatusMessage('Diese Email existiert bereits', 'error')
@@ -94,7 +95,11 @@ export class UserService {
     })
   }
 
-  getCurrentUserFirstName() {
-    return this.currentUser.first_name;
+  getCurrentUsername() {
+    return this.currentUser.username;
+  }
+
+  getUserData() {
+    return this.currentUser;
   }
 }

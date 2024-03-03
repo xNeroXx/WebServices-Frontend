@@ -10,6 +10,5 @@ export interface CurrentUserData {
     postal_code: number,
     city: string,
     country: string,
-    state: string
   }
 }

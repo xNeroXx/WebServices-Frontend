@@ -36,6 +36,8 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MatTooltip} from "@angular/material/tooltip";
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
+import {MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -54,6 +56,7 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     UploadComponent,
     LoadingScreenComponent,
     MetadataEditComponent,
+    CurrentUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,8 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
     MatProgressSpinner,
     MatFabButton,
     MatTooltip,
+    MatDialogTitle,
+    MatDialogContent,
   ],
   providers: [
     provideClientHydration(),
