@@ -10,7 +10,6 @@ import {SongService} from "../../services/song.service";
 })
 export class SearchResultsComponent implements OnInit{
 
-  songs: SongData[] = [];
   selectedSong: SongData | null = null;
   audioPlayer: HTMLAudioElement | null = null;
   selectedSongId: number | null = null;
@@ -34,7 +33,7 @@ export class SearchResultsComponent implements OnInit{
         this.audioPlayer.pause();
       }
       this.songService.getAudioSource(songId).subscribe(
-        (blob) => {
+        (blob: Blob) => {
           const audioUrl = URL.createObjectURL(blob);
           this.audioPlayer = new Audio(audioUrl);
           this.isPlaying = true;

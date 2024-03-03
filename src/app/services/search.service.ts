@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {createSongData, SongData} from "../interfaces/song-data";
 import {Router} from "@angular/router";
-import {StatusMessageService} from "./status-message.service";
 import {AutofillData, createAutofillData} from "../interfaces/autofill-data";
 
 @Injectable({
@@ -28,16 +27,13 @@ export class SearchService {
   }
 
   search(searchValue: string, searchCategory: string) {
-    console.log('cat ' + searchCategory + ' | val ' + searchValue);
     this.searchValue = searchValue;
     this.searchCategory = searchCategory;
     const lowerCaseSearchValue = searchValue.toLowerCase();
     if (searchCategory == 'title') {
       this._searchForSongs(searchValue, searchCategory);
-      console.log("1");
     } else {
       if (this.categorySearchResults.some(result => result.toLowerCase() === lowerCaseSearchValue)) {
-        console.log("2");
         this._searchForSongs(searchValue, searchCategory);
       } else {
         this._preSearchCategory();
@@ -47,13 +43,12 @@ export class SearchService {
   }
 
   private _searchForSongs(searchValue: string, searchCategory: string) {
-    this.http.post<Partial<SongData>[]>(this.searchURL + 'combined', {[searchCategory]: searchValue}).subscribe( //TODO research errorhandling thats not deprecated
+    this.http.post<Partial<SongData>[]>(this.searchURL + 'combined', {[searchCategory]: searchValue}).subscribe(
       (data) => {
         let tempList: SongData[] = [];
         for (let i = 0; i < data.length; i++) {
           tempList[i] = createSongData(data[i]);
         }
-        console.log(tempList)
         this.searchResponse = tempList;
         this.router.navigate(['/searchResults']);
       });
@@ -61,7 +56,6 @@ export class SearchService {
 
   private _preSearchCategory() {
     this.router.navigate(['/preSearch']);
-    console.log(this.filteredCategorySearchAutofillData)
   }
 
   getFilteredCategorySearchData(category: string, filterValue: string): string[] {
