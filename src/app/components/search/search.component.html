@@ -3,7 +3,6 @@
     <input [matAutocomplete]="auto" formControlName="searchValue" id="searchbar" matInput placeholder="Suche..."
            type="text">
     <mat-autocomplete #auto="matAutocomplete" hideSingleSelectionIndicator="true" id="search-autocomplete">
-      <!--TODO  autoSelectActiveOption="true" ja/nein-->
       @for (data of filteredAutoCompleteData; track $index) {
         <mat-option [value]="data">{{ data }}</mat-option>
       }
