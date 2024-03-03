@@ -6,7 +6,7 @@ import {TokenObject} from "../interfaces/token-object";
   providedIn: 'root'
 })
 export class RefreshService {
-  private refreshURL = 'https://127.0.0.1:8000/api/registration/auth/refresh'
+  private refreshURL = 'http://127.0.0.1:8000/api/registration/auth/refresh'
 
   constructor(private http: HttpClient) {  }
 
