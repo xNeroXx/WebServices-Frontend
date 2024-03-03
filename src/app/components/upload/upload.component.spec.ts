@@ -1,37 +1,23 @@
-import {Component} from '@angular/core';
-import {UploadService} from '../../services/upload.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
-})
-export class UploadComponent {
-  fileName: string = '';
-  progress: number = 0;
+import { UploadComponent } from './upload.component';
 
-  constructor(private uploadService: UploadService) {
-  }
+describe('UploadComponent', () => {
+  let component: UploadComponent;
+  let fixture: ComponentFixture<UploadComponent>;
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    this.fileName = file.name;
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [UploadComponent]
+    })
+      .compileComponents();
 
-    this.uploadService.uploadFile(file).subscribe(
-      (progress: number) => {
-        this.progress = progress;
-        if (progress === 100) {
-          // Reset file selection and progress after successful upload
-          this.fileName = '';
-          setTimeout(() => {
-            this.progress = 0;
-          }, 2000); // Set timeout to reset progress after 2 seconds
-        }
-      },
-      (error: any) => {
-        console.error('Upload failed:', error);
-        // Handle upload error
-      }
-    );
-  }
-}
+    fixture = TestBed.createComponent(UploadComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

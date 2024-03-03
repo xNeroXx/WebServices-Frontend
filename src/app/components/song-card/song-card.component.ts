@@ -5,6 +5,7 @@ import { FileConverterComponent } from "../file-converter/file-converter.compone
 import { SongData } from "../../interfaces/song-data";
 import { DeleteService } from "../../services/delete.service";
 import { StatusMessageService } from "../../services/status-message.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-song-card',
@@ -23,12 +24,13 @@ export class SongCardComponent {
 
   constructor(private dialog: MatDialog,
               private deleteService: DeleteService,
-              private statusMessageService: StatusMessageService) {
+              private statusMessageService: StatusMessageService,
+              private router: Router) {
   }
 
   togglePlay() {
     if (this.isPlaying) {
-      this.pause.emit(); // Emit a pause event
+      this.pause.emit();
     } else {
       this.play.emit(this.song.song_id);
     }
@@ -44,11 +46,6 @@ export class SongCardComponent {
   }
 
   openMetadataEditDialog(): void {
-    if (this.song.artists && this.song.artists.length > 0) {
-      console.log('Song über metadata geöffnet: ', this.song.artists[0]);
-    } else {
-      console.log('Song hat keine Künstlerinformationen');
-    }
     const dialogRef = this.dialog.open(MetadataEditComponent, {
       width: '600px',
       data: { song: this.song }
@@ -61,7 +58,7 @@ export class SongCardComponent {
     this.deleteService.deleteSong(songId).subscribe(
       () => {
         this.loading = true;
-        window.location.reload();
+        this.router.navigate([''])
         this.statusMessageService.showStatusMessage('Song erfolgreich gelöscht');
       },
       (error) => {

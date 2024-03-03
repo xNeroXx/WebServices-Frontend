@@ -58,6 +58,5 @@ export class FileConverterComponent {
 
   cancel(): void {
     this.closeDialog();
-    console.log('Konvertierung abgebrochen');
   }
 }
