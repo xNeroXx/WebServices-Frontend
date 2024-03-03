@@ -41,4 +41,12 @@ export class UploadComponent {
         })
     }
   }
+
+  get validFile() {
+    if (this.selectedFile?.name) {
+      return /\.mp3$/.test(this.selectedFile?.name)
+    } else {
+      return false;
+    }
+  }
 }
