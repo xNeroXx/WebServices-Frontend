@@ -26,6 +26,10 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy(){
+    this.pauseSong();
+  }
+
   playSong(songId: number): void {
     if (this.selectedSongId === songId && this.isPlaying) {
       this.isPlaying = false;
