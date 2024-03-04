@@ -1,0 +1,18 @@
+.current-user-title {
+  width: 100%;
+  text-align: center;
+}
+
+.current-user-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  td {
+    padding: 8px;
+    text-align: left;
+    border: none;
+  }
+  td:first-child {
+    border-right: 1px solid #ddd;
+  }
+}
