@@ -7,9 +7,11 @@ import {CurrentUserData} from "../../interfaces/current-user-data";
   templateUrl: './current-user.component.html',
   styleUrl: './current-user.component.scss'
 })
-export class CurrentUserComponent implements OnInit{
+export class CurrentUserComponent implements OnInit {
   protected currentUserData!: CurrentUserData;
-  constructor(private userService: UserService) {}
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
     this.currentUserData = this.userService.getUserData();

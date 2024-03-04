@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {SongService} from "../../services/song.service";
 import {SongData} from "../../interfaces/song-data";
+
 @Component({
   selector: 'app-music',
   templateUrl: './music.component.html',
@@ -13,7 +14,8 @@ export class MusicComponent implements OnInit {
   selectedSongId: number | null = null;
   isPlaying = false;
 
-  constructor(private songService: SongService) {}
+  constructor(private songService: SongService) {
+  }
 
   ngOnInit(): void {
     this.loadSongs();

@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { MetadataEditComponent } from "../metadata-edit/metadata-edit.component";
-import { FileConverterComponent } from "../file-converter/file-converter.component";
-import { SongData } from "../../interfaces/song-data";
-import { DeleteService } from "../../services/delete.service";
-import { StatusMessageService } from "../../services/status-message.service";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {MetadataEditComponent} from "../metadata-edit/metadata-edit.component";
+import {FileConverterComponent} from "../file-converter/file-converter.component";
+import {SongData} from "../../interfaces/song-data";
+import {DeleteService} from "../../services/delete.service";
+import {StatusMessageService} from "../../services/status-message.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -48,7 +48,7 @@ export class SongCardComponent {
   openMetadataEditDialog(): void {
     const dialogRef = this.dialog.open(MetadataEditComponent, {
       width: '600px',
-      data: { song: this.song }
+      data: {song: this.song}
     });
 
     dialogRef.afterClosed().subscribe();

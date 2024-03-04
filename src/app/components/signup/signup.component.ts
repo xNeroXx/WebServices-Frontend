@@ -26,13 +26,14 @@ export class SignupComponent {
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
 
     street: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    house_number: new FormControl(null,[Validators.required]),
+    house_number: new FormControl(null, [Validators.required]),
     postal_code: new FormControl('', [Validators.required, Validators.minLength(3)]),
     city: new FormControl('', [Validators.required, Validators.minLength(3)]),
     country: new FormControl('', [Validators.required, Validators.minLength(3)])
-});
+  });
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {
+  }
 
   getErrorMessage(field: string, minLength: number): string {
     if (this.signupForm.get(field)?.hasError('email') || this.signupForm.get(field)?.hasError('pattern')) {

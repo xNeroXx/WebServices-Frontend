@@ -26,17 +26,17 @@ import {MatInput} from "@angular/material/input";
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 import {PreSearchComponent} from './components/pre-search/pre-search.component';
 import {MatListSubheaderCssMatStyler} from "@angular/material/list";
-import { SongCardComponent } from './components/song-card/song-card.component';
-import { FileConverterComponent } from './components/file-converter/file-converter.component';
+import {SongCardComponent} from './components/song-card/song-card.component';
+import {FileConverterComponent} from './components/file-converter/file-converter.component';
 import {authHeaderInterceptor} from "./classes/auth-header.interceptor";
-import { MetadataEditComponent } from './components/metadata-edit/metadata-edit.component';
+import {MetadataEditComponent} from './components/metadata-edit/metadata-edit.component';
 import {MatSelect} from "@angular/material/select";
 import {MusicComponent} from "./components/music/music.component";
 import {NgOptimizedImage} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MatTooltip} from "@angular/material/tooltip";
-import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
-import { CurrentUserComponent } from './components/current-user/current-user.component';
+import {LoadingScreenComponent} from './components/loading-screen/loading-screen.component';
+import {CurrentUserComponent} from './components/current-user/current-user.component';
 import {MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
 
 @NgModule({
@@ -99,4 +99,5 @@ import {MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

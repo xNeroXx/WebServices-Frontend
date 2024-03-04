@@ -32,7 +32,8 @@ export class UserService {
     }
   }
 
-  constructor(private http: HttpClient, private statusMessageService: StatusMessageService, private router: Router) { }
+  constructor(private http: HttpClient, private statusMessageService: StatusMessageService, private router: Router) {
+  }
 
   login(userEmail: string = '', userPassword: string = '') {
     let userData = {'email': userEmail, 'password': userPassword};
@@ -52,7 +53,31 @@ export class UserService {
     })
   }
 
-  private _loginApiCall(userData: {[key:string]:string}): Observable<TokenObject> {
+  getLoggedIn() {
+    return this.loggedIn$;
+  }
+
+  logout() {
+    localStorage.clear();
+    this.loggedIn$.next(false);
+    this.router.navigate(['/login']);
+  }
+
+  loadCurrentUserData() {
+    this.http.get<CurrentUserData>(this.getCurrentUserURL).subscribe((data) => {
+      this.currentUser = data;
+    })
+  }
+
+  getCurrentUsername() {
+    return this.currentUser.username;
+  }
+
+  getUserData() {
+    return this.currentUser;
+  }
+
+  private _loginApiCall(userData: { [key: string]: string }): Observable<TokenObject> {
     return this.http.post<TokenObject>(this.loginApiURL + 'signin', userData).pipe(
       catchError((error) => {
         if (error.status == 404) {
@@ -75,31 +100,6 @@ export class UserService {
         }
         return throwError(() => 'Es gab einen Fehler. Bitte versuche es in ein paar Minuten nochmal!');
       })
-
     );
-  }
-
-  getLoggedIn() {
-    return this.loggedIn$;
-  }
-
-  logout(){
-    localStorage.clear();
-    this.loggedIn$.next(false);
-    this.router.navigate(['/login']);
-  }
-
-  loadCurrentUserData() {
-    this.http.get<CurrentUserData>(this.getCurrentUserURL).subscribe((data) => {
-      this.currentUser = data;
-    })
-  }
-
-  getCurrentUsername() {
-    return this.currentUser.username;
-  }
-
-  getUserData() {
-    return this.currentUser;
   }
 }

@@ -10,7 +10,6 @@ import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/butt
 import {MatChipListbox, MatChipOption} from "@angular/material/chips";
 
 
-
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -39,7 +38,13 @@ export class SearchComponent implements OnInit {
     searchCategory: new FormControl('title')
   });
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService) {
+  }
+
+  get filteredAutoCompleteData(): string[] {
+    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
+    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
+  }
 
   ngOnInit() {
     this.loadAutoCompleteData()
@@ -55,11 +60,6 @@ export class SearchComponent implements OnInit {
 
   loadAutoCompleteData() {
     this.searchService.getAutoCompleteData();
-  }
-
-  get filteredAutoCompleteData(): string[] {
-    const filterValue = this.searchForm.value.searchValue?.toLowerCase() ?? '';
-    return this.searchService.getFilteredCategorySearchData(this.searchForm.value.searchCategory ?? 'title', filterValue);
   }
 
 }

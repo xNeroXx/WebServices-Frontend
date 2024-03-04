@@ -17,6 +17,14 @@ export class UploadComponent {
 
   }
 
+  get validFile() {
+    if (this.selectedFile?.name) {
+      return /\.mp3$/.test(this.selectedFile?.name)
+    } else {
+      return false;
+    }
+  }
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
@@ -41,14 +49,6 @@ export class UploadComponent {
             return this.statusMessageService.showStatusMessage('Ein unbekannter Fehler ist aufgetreten. Versuchen Sie es später nochmal.', 'error');
           }
         })
-    }
-  }
-
-  get validFile() {
-    if (this.selectedFile?.name) {
-      return /\.mp3$/.test(this.selectedFile?.name)
-    } else {
-      return false;
     }
   }
 }

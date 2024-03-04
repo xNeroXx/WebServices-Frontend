@@ -8,20 +8,19 @@ import {AutofillData, createAutofillData} from "../interfaces/autofill-data";
   providedIn: 'root'
 })
 export class SearchService {
-  private searchURL = 'http://127.0.0.1:8000/api/search/search/'
-
   categorySearchAutofillData: AutofillData = createAutofillData();
-
   filteredCategorySearchAutofillData: string[] = [];
   categorySearchResults: string[] = []; //same as filteredCategorySearchAutofillData, but only updated on submit of search form
   searchResponse: SongData[] = [];
   searchValue: string = '';
   searchCategory: string = '';
+  private searchURL = 'http://127.0.0.1:8000/api/search/search/'
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   getAutoCompleteData() {
-    this.http.get<{[category: string]: string[]}>(this.searchURL + 'all_criteria').subscribe((data) => {
+    this.http.get<{ [category: string]: string[] }>(this.searchURL + 'all_criteria').subscribe((data) => {
       this.categorySearchAutofillData = createAutofillData(data);
     })
   }
@@ -42,6 +41,30 @@ export class SearchService {
     }
   }
 
+  getFilteredCategorySearchData(category: string, filterValue: string): string[] {
+    let tempList: string[] = [];
+    switch (category) {
+      default: {
+        tempList = this.categorySearchAutofillData.title ?? [];
+        break
+      }
+      case 'artist_name': {
+        tempList = this.categorySearchAutofillData.artist_name ?? [];
+        break
+      }
+      case 'album_name': {
+        tempList = this.categorySearchAutofillData.album_name ?? [];
+        break
+      }
+      case 'genre_name': {
+        tempList = this.categorySearchAutofillData.genre_name ?? [];
+        break
+      }
+    }
+    this.filteredCategorySearchAutofillData = tempList.filter(option => option.toLowerCase().includes(filterValue));
+    return this.filteredCategorySearchAutofillData;
+  }
+
   private _searchForSongs(searchValue: string, searchCategory: string) {
     this.http.post<Partial<SongData>[]>(this.searchURL + 'combined', {[searchCategory]: searchValue}).subscribe(
       (data) => {
@@ -56,18 +79,6 @@ export class SearchService {
 
   private _preSearchCategory() {
     this.router.navigate(['/preSearch']);
-  }
-
-  getFilteredCategorySearchData(category: string, filterValue: string): string[] {
-    let tempList: string[] = [];
-    switch (category) {
-      default: {tempList = this.categorySearchAutofillData.title ?? []; break}
-      case 'artist_name': {tempList = this.categorySearchAutofillData.artist_name ?? []; break}
-      case 'album_name': {tempList = this.categorySearchAutofillData.album_name ?? []; break}
-      case 'genre_name': {tempList = this.categorySearchAutofillData.genre_name ?? []; break}
-    }
-    this.filteredCategorySearchAutofillData = tempList.filter(option => option.toLowerCase().includes(filterValue));
-    return this.filteredCategorySearchAutofillData;
   }
 
 

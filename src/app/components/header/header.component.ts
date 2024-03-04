@@ -8,8 +8,12 @@ import {CurrentUserComponent} from "../current-user/current-user.component";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   constructor(private userService: UserService, private dialogService: DialogService) {
+  }
+
+  get currentUsername() {
+    return this.userService.getCurrentUsername();
   }
 
   ngOnInit() {
@@ -18,10 +22,6 @@ export class HeaderComponent implements OnInit{
 
   logout() {
     this.userService.logout();
-  }
-
-  get currentUsername() {
-    return this.userService.getCurrentUsername();
   }
 
   showUserData() {

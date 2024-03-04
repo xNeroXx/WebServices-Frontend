@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TokenObject} from "../interfaces/token-object";
 
@@ -8,7 +8,8 @@ import {TokenObject} from "../interfaces/token-object";
 export class RefreshService {
   private refreshURL = 'http://127.0.0.1:8000/api/registration/auth/refresh'
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+  }
 
   refreshToken() {
     return this.http.post<TokenObject>(this.refreshURL, {}).subscribe((data) => {

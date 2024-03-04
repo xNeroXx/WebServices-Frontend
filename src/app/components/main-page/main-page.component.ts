@@ -8,15 +8,16 @@ import {RefreshService} from "../../services/refresh.service";
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
-export class MainPageComponent implements OnInit, OnDestroy{
+export class MainPageComponent implements OnInit, OnDestroy {
   private intervalRefresh?: Subscription;
 
-  constructor(private refreshService: RefreshService, private userService: UserService) {}
+  constructor(private refreshService: RefreshService, private userService: UserService) {
+  }
 
   ngOnInit() {
     this.intervalRefresh = interval(30 * 58 * 1000)
       .subscribe(() => {
-        if(this.userService.getLoggedIn()){
+        if (this.userService.getLoggedIn()) {
           this.refreshService.refreshToken();
         }
       })

@@ -10,7 +10,7 @@
                 <mat-label>Vorname</mat-label>
                 <input matInput required formControlName="firstName">
                 @if (signupForm.get('firstName')?.invalid) {
-                  <mat-error>{{getErrorMessage('firstName',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('firstName', 3) }}</mat-error>
                 }
               </mat-form-field>
 
@@ -18,7 +18,7 @@
                 <mat-label>Nachname</mat-label>
                 <input matInput required formControlName="lastName">
                 @if (signupForm.get('lastName')?.invalid) {
-                  <mat-error>{{getErrorMessage('lastName',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('lastName', 3) }}</mat-error>
                 }
               </mat-form-field>
 
@@ -26,25 +26,26 @@
                 <mat-label>E-Mail</mat-label>
                 <input matInput required formControlName="email">
                 @if (signupForm.get('email')?.invalid) {
-                  <mat-error>{{getErrorMessage('email',0)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('email', 0) }}</mat-error>
                 }
               </mat-form-field>
 
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Passwort</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'" [attr.aria-pressed]="hide">
-                  <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Passwort anzeigen'"
+                        [attr.aria-pressed]="hide">
+                  <mat-icon>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
                 </button>
                 @if (signupForm.get('password')?.invalid) {
-                  <mat-error>{{getErrorMessage('password',8)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('password', 8) }}</mat-error>
                 }
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Benutzername</mat-label>
                 <input matInput required formControlName="username">
                 @if (signupForm.get('username')?.invalid) {
-                  <mat-error>{{getErrorMessage('username',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('username', 3) }}</mat-error>
                 }
               </mat-form-field>
             </div>
@@ -56,42 +57,44 @@
                 <mat-label>Straße</mat-label>
                 <input matInput required formControlName="street">
                 @if (signupForm.get('street')?.invalid) {
-                  <mat-error>{{getErrorMessage('street',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('street', 3) }}</mat-error>
                 }
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Hausnummer</mat-label>
                 <input matInput type="number" required formControlName="house_number" min="1">
                 @if (signupForm.get('house_number')?.invalid) {
-                  <mat-error>{{getErrorMessage('house_number',0)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('house_number', 0) }}</mat-error>
                 }
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Postleitzahl</mat-label>
                 <input matInput required formControlName="postal_code">
                 @if (signupForm.get('postal_code')?.invalid) {
-                  <mat-error>{{getErrorMessage('postal_code',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('postal_code', 3) }}</mat-error>
                 }
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Stadt</mat-label>
                 <input matInput required formControlName="city">
                 @if (signupForm.get('city')?.invalid) {
-                  <mat-error>{{getErrorMessage('city',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('city', 3) }}</mat-error>
                 }
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Land</mat-label>
                 <input matInput required formControlName="country">
                 @if (signupForm.get('country')?.invalid) {
-                  <mat-error>{{getErrorMessage('country',3)}}</mat-error>
+                  <mat-error>{{ getErrorMessage('country', 3) }}</mat-error>
                 }
               </mat-form-field>
             </div>
           </div>
 
 
-          <button mat-stroked-button color="primary" (click)="submit()" type="submit" [disabled]="!signupForm.valid">Fertig</button>
+          <button mat-stroked-button color="primary" (click)="submit()" type="submit" [disabled]="!signupForm.valid">
+            Fertig
+          </button>
         </form>
       </div>
 

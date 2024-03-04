@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CurrentUserComponent } from './current-user.component';
+import {CurrentUserComponent} from './current-user.component';
 
 describe('CurrentUserComponent', () => {
   let component: CurrentUserComponent;
@@ -10,8 +10,8 @@ describe('CurrentUserComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CurrentUserComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CurrentUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

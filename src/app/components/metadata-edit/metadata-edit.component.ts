@@ -35,10 +35,9 @@ export class MetadataEditComponent {
       this.dialogRef.close();
     }, (error: any) => {
       this.loading = false;
-      if(error.status === 422) {
+      if (error.status === 422) {
         return this.statusMessageService.showStatusMessage('Bitte geben Sie valide Werte ein.', 'error');
-      }
-       else {
+      } else {
         return this.statusMessageService.showStatusMessage('Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später nochmal.', 'error');
       }
     });
