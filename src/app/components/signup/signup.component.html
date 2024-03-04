@@ -68,9 +68,9 @@
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">
                 <mat-label>Postleitzahl</mat-label>
-                <input matInput required formControlName="postal_code" min="1">
+                <input matInput required formControlName="postal_code">
                 @if (signupForm.get('postal_code')?.invalid) {
-                  <mat-error>{{getErrorMessage('postal_code',0)}}</mat-error>
+                  <mat-error>{{getErrorMessage('postal_code',3)}}</mat-error>
                 }
               </mat-form-field>
               <mat-form-field appearance="outline" color="primary" class="form-field-full-width">

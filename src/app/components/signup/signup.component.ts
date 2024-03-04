@@ -27,7 +27,7 @@ export class SignupComponent {
 
     street: new FormControl('', [Validators.required, Validators.minLength(3)]),
     house_number: new FormControl(null,[Validators.required]),
-    postal_code: new FormControl('', [Validators.required]),
+    postal_code: new FormControl('', [Validators.required, Validators.minLength(3)]),
     city: new FormControl('', [Validators.required, Validators.minLength(3)]),
     country: new FormControl('', [Validators.required, Validators.minLength(3)])
 });
@@ -68,7 +68,8 @@ export class SignupComponent {
 
     temp.address.street = this.signupForm.value.street ?? '';
     temp.address.house_number = this.signupForm.value.house_number ?? 0;
-    temp.address.postal_code = this.signupForm.value.postal_code ?? '';
+    temp.address.postal_code = <string>this.signupForm.value.postal_code ?? '';
+    console.log(temp.address.postal_code)
     temp.address.city = this.signupForm.value.city ?? '';
     temp.address.country = this.signupForm.value.country ?? '';
 
