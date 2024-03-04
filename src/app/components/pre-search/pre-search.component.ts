@@ -17,9 +17,7 @@ export class PreSearchComponent implements AfterContentChecked {
   }
 
   handleOptionSelection(option: string) {
-    console.log('value' + (document.getElementById('searchbar') as HTMLInputElement).value);
     (document.getElementById('searchbar') as HTMLInputElement).value = option;
-    console.log('value' + (document.getElementById('searchbar') as HTMLInputElement).value);
     document.getElementById('search-submit')?.click();
   }
 
