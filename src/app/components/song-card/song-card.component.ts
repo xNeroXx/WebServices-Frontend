@@ -38,7 +38,7 @@ export class SongCardComponent {
 
   openConversionDialog(file_id: number): void {
     this.dialog.open(FileConverterComponent, {
-      width: '600px',
+      width: '300px',
       data: {
         fileId: file_id,
       }
