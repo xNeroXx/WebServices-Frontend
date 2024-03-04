@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {createSongData, SongData} from "../interfaces/song-data";
 import {Router} from "@angular/router";
 import {AutofillData, createAutofillData} from "../interfaces/autofill-data";
+import {catchError, throwError} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,18 @@ export class SearchService {
   }
 
   getAutoCompleteData() {
-    this.http.get<{ [category: string]: string[] }>(this.searchURL + 'all_criteria').subscribe((data) => {
-      this.categorySearchAutofillData = createAutofillData(data);
-    })
+    this.http.get<{ [category: string]: string[] }>(this.searchURL + 'all_criteria')
+      .pipe(
+        catchError((error) => {
+          if (error.status == 404) {
+            this.categorySearchAutofillData = createAutofillData();
+          }
+          return throwError(() => 'Keine Daten vorhanden');
+        })
+      )
+      .subscribe((data) => {
+        this.categorySearchAutofillData = createAutofillData(data);
+      })
   }
 
   search(searchValue: string, searchCategory: string) {
@@ -37,7 +47,6 @@ export class SearchService {
       } else {
         this._preSearchCategory();
       }
-
     }
   }
 
