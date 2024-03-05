@@ -70,7 +70,7 @@ export class MetadataEditComponent {
     this.metadataService.changeMetadata(updatedSongData).subscribe(
       () => {
         this.loading = true;
-        this.statusMessageService.showStatusMessage('Daten erfolgreich aktualisiert', 'success');
+        this.statusMessageService.showStatusMessage('Daten erfolgreich aktualisiert', 'affirmative');
         this.data.song.artists = updatedSongData.artists || [];
         this.selectedArtistNames = this.extractArtistNames(this.data.song.artists);
         this.dialogRef.close();

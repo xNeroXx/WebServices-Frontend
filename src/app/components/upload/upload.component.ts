@@ -33,7 +33,7 @@ export class UploadComponent {
     if (this.selectedFile) {
       this.uploadService.uploadFile(this.selectedFile).subscribe(
         () => {
-          this.statusMessageService.showStatusMessage('Die Datei wurde erfolgreich hochgeladen.', 'success');
+          this.statusMessageService.showStatusMessage('Die Datei wurde erfolgreich hochgeladen.', 'affirmative');
           this.selectedFile = undefined;
           this.searchService.getAutoCompleteData();
         },
