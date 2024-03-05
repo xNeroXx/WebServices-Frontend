@@ -44,7 +44,11 @@ export class MetadataEditComponent {
     }
 
     const artistNames = this.selectedArtistNames.split(';').map(name => name.trim());
-    updatedSongData.artists = artistNames.map(name => ({name: name}));
+
+    const validArtists = artistNames.filter(name => name !== '');
+    if (validArtists.length > 0) {
+      updatedSongData.artists = validArtists.map(name => ({ name: name }));
+    }
 
     if (this.data.song.title) {
       updatedSongData.title = this.data.song.title;
@@ -75,4 +79,5 @@ export class MetadataEditComponent {
       }
     );
   }
+
 }
