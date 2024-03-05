@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MetadataService } from '../../services/metadata.service';
-import { StatusMessageService } from "../../services/status-message.service";
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MetadataService} from '../../services/metadata.service';
+import {StatusMessageService} from "../../services/status-message.service";
 import {UpdatedSongData} from "../../interfaces/update-song-data";
 
 @Component({
@@ -44,7 +44,7 @@ export class MetadataEditComponent {
     }
 
     const artistNames = this.selectedArtistNames.split(';').map(name => name.trim());
-    updatedSongData.artists = artistNames.map(name => ({ name: name }));
+    updatedSongData.artists = artistNames.map(name => ({name: name}));
 
     if (this.data.song.title) {
       updatedSongData.title = this.data.song.title;

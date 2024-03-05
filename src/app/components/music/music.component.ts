@@ -16,7 +16,8 @@ export class MusicComponent implements OnInit, OnDestroy {
   audioSourceNode: AudioBufferSourceNode | null = null;
   isPlaying = false;
 
-  constructor(private songService: SongService) {}
+  constructor(private songService: SongService) {
+  }
 
   async ngOnInit(): Promise<void> {
     try {

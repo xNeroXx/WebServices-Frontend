@@ -4,9 +4,9 @@
     <div class="nav">
       <button mat-button routerLink="/">Home</button>
       <button mat-button routerLink="/music">Musik</button>
-      <button mat-button (click)="logout()">Logout</button>
+      <button (click)="logout()" mat-button>Logout</button>
     </div>
-    <button mat-button (click)="showUserData()">{{ currentUsername }}</button>
+    <button (click)="showUserData()" mat-button>{{ currentUsername }}</button>
   </mat-toolbar>
 </header>
 
