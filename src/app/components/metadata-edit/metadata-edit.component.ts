@@ -1,8 +1,8 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MetadataService} from '../../services/metadata.service';
-import {StatusMessageService} from "../../services/status-message.service";
-import {UpdatedSongData} from "../../interfaces/update-song-data";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MetadataService } from '../../services/metadata.service';
+import { StatusMessageService } from "../../services/status-message.service";
+import { UpdatedSongData } from "../../interfaces/update-song-data";
 
 @Component({
   selector: 'app-metadata-edit',
@@ -21,7 +21,11 @@ export class MetadataEditComponent {
     statusMessageService: StatusMessageService
   ) {
     this.statusMessageService = statusMessageService;
-    this.selectedArtistNames = data.song.artists.map((artist: { name: string; }) => artist.name).join('; ');
+    this.selectedArtistNames = this.extractArtistNames(data.song.artists);
+  }
+
+  extractArtistNames(artists: { name: string }[]): string {
+    return artists.map(artist => artist.name).join('; ');
   }
 
   cancel(): void {
@@ -67,6 +71,8 @@ export class MetadataEditComponent {
       () => {
         this.loading = true;
         this.statusMessageService.showStatusMessage('Daten erfolgreich aktualisiert', 'success');
+        this.data.song.artists = updatedSongData.artists || [];
+        this.selectedArtistNames = this.extractArtistNames(this.data.song.artists);
         this.dialogRef.close();
       },
       (error: any) => {
@@ -79,5 +85,4 @@ export class MetadataEditComponent {
       }
     );
   }
-
 }
