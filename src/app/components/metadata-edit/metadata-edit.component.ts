@@ -1,7 +1,8 @@
-import {Component, inject, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MetadataService} from '../../services/metadata.service';
-import {StatusMessageService} from "../../services/status-message.service";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MetadataService } from '../../services/metadata.service';
+import { StatusMessageService } from "../../services/status-message.service";
+import {UpdatedSongData} from "../../interfaces/update-song-data";
 
 @Component({
   selector: 'app-metadata-edit',
@@ -11,13 +12,15 @@ import {StatusMessageService} from "../../services/status-message.service";
 export class MetadataEditComponent {
   selectedArtistNames: string;
   loading = false;
-  statusMessageService: StatusMessageService = inject(StatusMessageService);
+  statusMessageService: StatusMessageService;
 
   constructor(
     public dialogRef: MatDialogRef<MetadataEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private metadataService: MetadataService
+    private metadataService: MetadataService,
+    statusMessageService: StatusMessageService
   ) {
+    this.statusMessageService = statusMessageService;
     this.selectedArtistNames = data.song.artists.map((artist: { name: string; }) => artist.name).join('; ');
   }
 
@@ -26,20 +29,50 @@ export class MetadataEditComponent {
   }
 
   save(): void {
-    const artistNames = this.selectedArtistNames.split(';').map(name => name.trim());
+    const updatedSongData: UpdatedSongData = {
+      song_id: this.data.song.song_id
+    };
 
-    this.data.song.artists = artistNames.map(name => ({name: name}));
-    this.metadataService.changeMetadata(this.data.song).subscribe(() => {
-      this.loading = true;
-      this.statusMessageService.showStatusMessage('Daten erfolgreich aktualisiert', 'success');
+    if (
+      !this.data.song.title &&
+      !this.data.song.album &&
+      !this.data.song.genre &&
+      !this.data.song.release_date
+    ) {
       this.dialogRef.close();
-    }, (error: any) => {
-      this.loading = false;
-      if (error.status === 422) {
-        return this.statusMessageService.showStatusMessage('Bitte geben Sie valide Werte ein.', 'error');
-      } else {
-        return this.statusMessageService.showStatusMessage('Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später nochmal.', 'error');
+      return;
+    }
+
+    const artistNames = this.selectedArtistNames.split(';').map(name => name.trim());
+    updatedSongData.artists = artistNames.map(name => ({ name: name }));
+
+    if (this.data.song.title) {
+      updatedSongData.title = this.data.song.title;
+    }
+    if (this.data.song.album) {
+      updatedSongData.album = this.data.song.album;
+    }
+    if (this.data.song.genre) {
+      updatedSongData.genre = this.data.song.genre;
+    }
+    if (this.data.song.release_date) {
+      updatedSongData.date = this.data.song.release_date;
+    }
+
+    this.metadataService.changeMetadata(updatedSongData).subscribe(
+      () => {
+        this.loading = true;
+        this.statusMessageService.showStatusMessage('Daten erfolgreich aktualisiert', 'success');
+        this.dialogRef.close();
+      },
+      (error: any) => {
+        this.loading = false;
+        if (error.status === 422) {
+          this.statusMessageService.showStatusMessage('Bitte geben Sie valide Werte ein.', 'error');
+        } else {
+          this.statusMessageService.showStatusMessage('Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später nochmal.', 'error');
+        }
       }
-    });
+    );
   }
 }

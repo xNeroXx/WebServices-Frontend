@@ -31,7 +31,7 @@
     <div class="custom-input-field" [class.error]="dateInput.invalid && dateInput.touched">
       <mat-form-field appearance="outline" class="input-field">
         <mat-label>Erscheinungsjahr</mat-label>
-        <input #dateInput="ngModel" [(ngModel)]="data.song.date" matInput placeholder="Erscheinungsjahr"
+        <input #dateInput="ngModel" [(ngModel)]="data.song.release_date" matInput placeholder="Erscheinungsjahr"
                pattern="[0-9]*">
         <mat-error *ngIf="dateInput.invalid && dateInput.touched"></mat-error>
       </mat-form-field>

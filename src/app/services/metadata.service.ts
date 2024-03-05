@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {SongData} from "../interfaces/song-data";
+import {UpdatedSongData} from "../interfaces/update-song-data";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class MetadataService {
   constructor(private http: HttpClient) {
   }
 
-  changeMetadata(song: SongData): Observable<string> {
+  changeMetadata(song: UpdatedSongData): Observable<string> {
     return this.http.post(this.apiUrl, song, {responseType: 'text'});
   }
 }
